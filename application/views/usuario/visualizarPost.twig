@@ -1,0 +1,79 @@
+{% extends "base.twig" %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+        <span class="section">Timeline</span>
+        <i class="right chevron icon divider"></i>
+        <span class="section">{{ titulo }}</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile four wide tablet three wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile eight wide tablet seven wide computer centered column{% endblock %}
+
+{% block right_class %}sixteen wide four four wide tablet four wide computer centered column{% endblock %}
+
+{% block left_content %}
+    <div class="row">
+        {% include "usuario/conteudoEsquerda.twig" %}
+        {% include 'usuario/menu_principal.twig' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="ui card">
+            <div class="content">
+                <img class="mini circular ui image" src="{{ file_name_post|raw }}"> {{ "%s %s"|format(nome, ultimo_nome) }}
+                <div class="ui segment">
+                    <h2 class="ui dividing header">{{ titulo|raw }}</h2>
+                    <div class="description">
+                        {{ descricao|raw }}
+                    </div>
+                </div>
+            </div>
+            <div class="extra content">
+
+                <div class="right floated">
+                    <i class="calendar icon"></i> {{ data }}
+                </div>
+
+                <div>
+                    <span class="left floated gostei">
+                        <div class="curtidas2">
+                        <label class="curtidas" id="{{ id_post }}"></label><i class="like icon love"></i>
+                         </div>Likes
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% include 'usuario/comentario.twig' %}
+    </div>
+{% endblock %}
+
+{#{% block right_content %}#}
+    {#<div class="row">#}
+        {#<div class="ui segment"> #}{# sticky #}
+            {#<div class="ui three stackable cards">#}
+
+                {#<div class="card">#}
+                    {#<div class="image">#}
+                        {#<img src="{{ base_url()|raw }}/static/images/padrao.png">#}
+                    {#</div>#}
+                {#</div>#}
+
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+{#{% endblock %}#}

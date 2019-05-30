@@ -1,0 +1,171 @@
+{% extends "base.twig" %}
+
+{% block title %}Editar Dados Pessoais{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+    <span class="section">Perfil</span>
+    <i class="right chevron icon divider"></i>
+    <span class="section">Editar Dados Cadastrais</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile twelve wide tablet ten wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile twelve wide tablet eight wide computer centered column{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block content %}
+    <div class="ui segment">
+        <div class="row">
+            {{ form_open_editar|raw }}
+            <h2 class="color-h-green">Editar Perfil </h2>
+            <div class="ui segment">
+                <div class="row">
+                    <div class="field">
+
+                        <a class="ui pointing below blue basic label">Nome e o Ultimo nome: Não podem ter caracteres especiais e/ou numeros!</a>
+
+                        {{ label_nome|raw }}
+                        {{ input_nome|raw }}
+
+                        {% if (erros_validacao['erros_nome']) %}
+
+                            {{ erros_validacao['erros_nome']|raw }}
+
+                        {% endif %}
+
+                    </div>
+                    <div class="field">
+
+                        {{ label_ultimo_nome|raw }}
+                        {{ input_ultimo_nome|raw }}
+
+                        {% if (erros_validacao['erros_ultimo_nome']) %}
+
+                            {{ erros_validacao['erros_ultimo_nome']|raw }}
+
+                        {% endif %}
+
+                    </div>
+                    <div class="field">
+                        <a class="ui pointing below blue basic label">Email: Válido, pois sera verificado posteriormente! </a>
+
+                        {{ label_email|raw }}
+                        {{ input_email|raw }}
+
+                        {% if (erros_validacao['erros_email']) %}
+
+                            {{ erros_validacao['erros_email']|raw }}
+
+                        {% endif %}
+
+                    </div>
+                    <div class="field">
+                        <a class="ui pointing below blue basic label">Facebook: Link do seu Facebook! (Sera exibido no seu Perfil)</a>
+
+                        {{ label_facebook|raw }}
+                        {{ input_facebook|raw }}
+
+                    </div>
+                    <div class="field">
+                        <a class="ui pointing below blue basic label">Linkedin: Link do seu Linkedin! (Sera exibido no seu Perfil)</a>
+
+                        {{ label_linkedin|raw }}
+                        {{ input_linkedin|raw }}
+
+                    </div>
+                    <div class="field">
+                        <a class="ui pointing below blue basic label">Sua ocupação atual.</a>
+
+                        {{ label_trabalho_atual|raw }}
+                        {{ input_trabalho_atual|raw }}
+
+                    </div>
+                    <div class="field">
+                        <a class="ui pointing below blue basic label">Formação: Sua formação academica (Ex.: Ensino Médio - IFC)</a>
+
+                        {{ label_formacao_academica|raw }}
+                        {{ input_formacao_academica|raw }}
+
+                        <div class="sixteen wide column">
+                            <b><label> *Para adicionar uma nova formação, separe por ";"</label></b>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui grid">
+                    <div class="sixteen wide column">
+
+                        {{ form_button|raw }}
+
+                    </div>
+                </div>
+                {{ form_close|raw }}
+            </div>
+            {%  if usuario_logado['facebook'] == 'vazio' and usuario_logado['linkedin'] == 'vazio' %}
+            <hr>
+
+            <div class="ui segment">
+                <div class="row">
+                    <div class="ui info olive message">
+                        <i class="close icon"></i>
+                        <div class="header">
+                            Regras para a definição de Senha:
+                        </div>
+                        <ul class="list">
+                            <li>A senha tem que ser maior que 7 caracteres;</li>
+                            <li>A senha deverá ter pelo menos um numero e uma letra.</li>
+                        </ul>
+                    </div>
+                    <div class="ui">
+                        <div class="row">
+                            <h2 class="color-h-green">Alterar Senha </h2>
+                        </div>
+                        {{ form_open_trocar_senha|raw }}
+                        <div class="field">
+
+                            {{ label_senha|raw }}
+                            {{ input_senha|raw }}
+
+                            {% if (erros_validacao['erros_senha']) %}
+
+                                {{ erros_validacao['erros_senha']|raw }}
+
+                            {% endif %}
+
+                        </div>
+
+                        <div class="field">
+
+                            {{ label_senha_confirma|raw }}
+                            {{ input_senha_confirma|raw }}
+
+                            {% if (erros_validacao['erros_senhaconfirma']) %}
+
+                                {{ erros_validacao['erros_senhaconfirma']|raw }}
+
+                            {% endif %}
+
+                        </div>
+                        <div class="ui grid">
+                            <div class="sixteen wide column">
+
+                                {{ form_button|raw }}
+
+                            </div>
+                        </div>
+                        {{ form_close|raw }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends "base.twig" %}
+
+{% block title %}Perfil - {{ usuario['nome_completo'] }}{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+        <span class="section">Perfil</span>
+        <i class="right chevron icon divider"></i>
+        <span class="section">{{ usuario['nome_completo'] }}</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile four wide tablet three wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile eight wide tablet seven wide computer centered column{% endblock %}
+
+{% block right_class %}sixteen wide mobile four wide tablet four wide computer centered column{% endblock %}
+
+{% block left_content %}
+    <div class="row">
+        <div class="ui card">{# sticky #}
+            <div class="image">
+                <div class="ui dimmer">
+                    <div class="content">
+                        <div class="center">
+                            {{ form_open|raw }}
+                            {{ input_upload|raw }}
+                            {{ label_foto|raw }}
+                            {{ button_submit|raw }}
+                            {{ form_close|raw }}
+                        </div>
+                    </div>
+                </div>
+                <img src="{{ file_name_visita|raw }}">
+            </div>
+            <div class="content">
+                <a class="header">{{ usuario['nome_completo'] }}</a>
+                <div class="meta">
+                    {#<span class="date">Membro desde ...</span>#}
+                </div>
+                <div class="description">
+                    <p>Informações Pessoais:</p>
+                    <p>Curso: {{ curso["curso"] }}</p>
+                    <p>Turma: {{ turma["turma"] }}  Ano Egresso: {{ usuario["ano_egresso"] }}</p>
+                    <p>Campus: {{ campus["nome"] }} </p>
+                    <p>Ocupação Atual: {% if usuario["trabalho_atual"] == 'vazio' %} <p>Desempregado</p> {% else %} {{  usuario["trabalho_atual"] }} {% endif %}</p>
+                </div>
+                {{ form_open_amigo|raw }}
+                <input type="hidden" value="{{ id_usuario_amigo|raw }}" name="id_amigo">
+                {{ button_submit_amigo|raw }}
+                {{ form_close()|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="ui segment">
+
+            <div class="ui segment">
+                <h3 class="ui header">Contatos:</h3>
+                <h5>Facebook: {% if usuario['facebook'] == 'vazio' %} <p>Inexistente</p> {% else %} <a href="{{ usuario["facebook"] }}">{{ usuario['nome_completo'] }}</a> {% endif %}</h5>
+                <h5>Linkedin: {% if usuario['linkedin'] == 'vazio' %} <p>Inexistente</p> {% else %} <a href="{{ usuario["linkedin"] }}">{{ usuario['nome_completo'] }}</a> {% endif %}</h5>
+                <h5>Email: {{ usuario["email"] }} </h5>
+            </div>
+            <div class="ui segment">
+                <h3 class="ui header">Formação Academica:</h3>
+                {% if usuario['formacao_academica'] == 'vazio' %} <p>Inexistente</p>{% else %} {% for item in formacao %} <h5> {{ item|e }} </h5> {% endfor %} {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block right_content %}
+    <div class="row">
+        <div class="ui segment">
+
+            <div class="ui celled list">
+                <h5 class="header"><i class="users icon"></i>Amigos: {{ num_amigos }}</h5>
+
+                {% for amigo in amigos %}
+
+                    <div class="item">
+                        <img class="ui avatar image" src="{{ amigo['file_name'] }}">
+                        <div class="content">
+                            <form class="ui form" method="post" action="{{ url_amigos }}" style="margin-top: 0em;">
+                                <div class='field'>
+                                    <input name='id_usuario' type='hidden' value="{{ amigo['id_usuario'] }}">
+                                </div>
+                                <div class="header">{{ amigo['nome_completo'] }}
+                                    <input type='submit' class='ui mini button' value='Ver perfil'>
+                                </div>
+
+                            </form>
+                            {{ amigo['descricao'] }}
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

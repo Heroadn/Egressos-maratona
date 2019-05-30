@@ -1,0 +1,33 @@
+{% extends "base.twig" %}
+
+{% block title %}Valide sua Conta!{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}hidden{% endblock %}
+
+{% block mid_class %}sixteen wide mobile twelve wide tablet eight wide computer centered column{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block content %}
+
+    <div class="ui segment novo">
+        <h1 class="ui center aligned icon header color-h-green">
+            Ative sua conta!
+        </h1>
+        <h2 class="ui center aligned icon header color-h-green">
+            Verifique em sua caixa de mensagens até na caixa de spam!
+        </h2>
+        <h3 class="centered">
+            {{ button_login|raw }}
+        </h3>
+    </div>
+
+{% endblock %}

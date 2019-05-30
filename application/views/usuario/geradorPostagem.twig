@@ -1,0 +1,68 @@
+<div class="active content">
+    {{ form_open|raw }}
+
+    <h3 class="ui dividing header">Escreva seu Post</h3>
+
+    <div class="field">
+
+        <div class="ui small blue message">Título: Minimo 5 e Maximo 50 caracteres!(Caracteres especiais ainda não permitidos)
+            <i class="close icon blue"></i>
+        </div>
+
+        {{ label_titulo|raw }}
+        {{ input_titulo|raw }}
+
+        {% if (erros_validacao['erros_titulo']) %}
+
+            {{ erros_validacao['erros_titulo']|raw }}
+
+        {% endif %}
+
+    </div>
+    <div class="field">
+
+        <div class="ui small blue message">Conteudo: Minimo 10 e Maximo 500 caracteres!(Caracteres especiais ainda não permitidos)
+            <i class="close icon blue"></i>
+        </div>
+
+        {{ label_conteudo|raw }}
+        {{ input_conteudo|raw }}
+
+        {% if (erros_validacao['erros_conteudo']) %}
+
+            {{ erros_validacao['erros_conteudo']|raw }}
+
+        {% endif %}
+
+    </div>
+    <div class="ui grid comen">
+        <div class="eight wide column comen">
+            {{ label_foto|raw }}
+            {{ input_upload|raw }}
+        </div>
+        <div class="eight wide column comen">
+            {{ button_confirm|raw }}
+        </div>
+        <div class="sixteen wide column" id="imagens-carregadas">
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="ui basic modal">
+    <div class="ui icon header">
+        <i class="yellow exclamation triangle icon"></i>
+        Você tem certeza que deseja publicar ?
+    </div>
+    <div class="content" id="content-modal">
+        <p>OBS: Irá aparecer para todos os úsuarios!</p>
+    </div>
+    <div class="actions">
+        <button class="ui red cancel labeled icon button"><i class="remove icon"></i>Cancelar</button>
+        {{ button_submit|raw }}
+    </div>
+</div>
+
+{{ form_close|raw }}

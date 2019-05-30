@@ -1,0 +1,80 @@
+{% extends "base.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block body_class %}login-bk{% endblock %}
+
+{% block left_class %}hidden{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block master_class %}ui center aligned grid{% endblock %}
+
+{% block mid_class %}ui container segment login{% endblock %}
+
+{% block content %}
+                <div class="row">
+                    <h2 class="ui center aligned icon header color-h-green">
+                        <i class="circular book icon"></i>
+                        Bem vindo
+                    </h2>
+                </div>
+                <div class="row">
+                    {% if( msg_login ) %}
+                        <aside class="ui centered red message">
+                            <h3 class="header">
+                                {{ msg_login|raw }}
+                            </h3>
+                        </aside>
+                    {% endif %}
+                    {% if( oauth_existente ) %}
+                        <aside class="{{ classe_oauth_existente|raw }}">
+                            <h3 class="header">
+                                {{ oauth_existente|raw }}
+                            </h3>
+                        </aside>
+                    {% endif %}
+                    {{ form_open|raw }}
+                    <div class="field">
+
+                        {{ label_email|raw }}
+                        {{ input_email|raw }}
+
+                    </div>
+                    <div class="field">
+
+                        {{ label_senha|raw }}
+                        {{ password|raw }}
+
+                    </div>
+
+                        {{ button_submit|raw }}
+                    <div class="field">
+                        {{ recuperar_senha|raw }}
+                    </div>
+                    {{ form_close|raw }}
+                    <div class="ui basic segment">
+                        <div class="ui white fluid  label">
+                            <h4 class="color-h-green centered">
+                                <i class="user icon"></i> Não tem cadastro?
+                                <a class='color-a-brown' href="{{ base_url()|raw }}PortalEgresso/cadastro">
+                                    <i class="plus icon"></i>Cadastre-se
+                                </a>
+                            </h4>
+                        </div>
+                        <div class="ui horizontal divider">
+                            Ou
+                        </div>
+
+
+                                {% for provider in providers %}
+                        <div class="ui tag white label">
+                            <h4>
+                                    <a>{{ provider|raw }}</a>
+                            </h4>
+                        </div>
+                                {% endfor %}
+
+                    </div>
+                </div>
+{% endblock %}

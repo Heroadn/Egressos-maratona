@@ -1,0 +1,17 @@
+<div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Essa é sua foto atual
+    </div>
+    <div class="ui container ">
+        <img id="imagem-usuario" class="ui medium image centered" src="{{ file_name|raw }}"><br>
+    </div>
+    <div class="botaoEnviarFoto">
+        {{ form_open|raw }}
+        {{ input_upload|raw }}
+        {{ label_foto|raw }}
+        {{ anchor_cancelar|raw }}
+        {{ button_submit|raw }}
+        {{ form_close|raw }}
+    </div>
+</div>

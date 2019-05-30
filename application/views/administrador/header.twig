@@ -1,0 +1,54 @@
+<nav class="ui big inverted stackable menu menu-principal color-menu-admin">
+    <label class="item fonte-cor-menu-admin" id="botaomenu">
+        <i class="bars icon"></i>
+        Menu
+    </label>
+    <a {% if usuario_logado %}href="{{ base_url()|raw }}Usuario/perfil"{% else %}href="{{ base_url()|raw }}"{% endif %} class="item fonte-cor-menu-admin">
+        <i class="home icon"></i>
+    </a>
+
+    <label class="header"><h1>Painel Administrativo</h1></label>
+
+    <div class="right stackable menu fonte-cor-menu-admin">
+
+        {% if usuario_logado %}
+            <a class="item" href="{{ base_url()|raw }}Timeline/postagem">
+                <i class="newspaper icon"></i>
+                Timeline
+            </a>
+            <a class="item" href="{{ base_url()|raw }}Grupo/postagemGrupo">
+                <i class="group icon"></i>
+                Grupo
+            </a>
+            <div class="ui pointing dropdown link item">
+                <div class="text"><img class="ui avatar image" src="{{ file_name|raw }}">Administrador</div>
+                <i class="dropdown icon"></i>
+
+                <div class="menu">
+                    <a href="{{ base_url()|raw }}Usuario/perfil" class="item ">
+                        <i class="user icon"></i>
+                        Perfil
+                    </a>
+                    {% if usuario_logado['id_tipo_usuario'] == 2%}
+                        <a class="item" href="{{ base_url()|raw }}Administrador/painel">
+                            <i class="address book outline icon"></i>
+                            Painel Administrativo
+                        </a>
+                    {% endif %}
+                    <a href="{{ base_url()|raw }}Usuario/logout" class="item">
+                        <i class="sign in icon"></i>
+                        Sair
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <a href="{{ base_url()|raw }}PortalEgresso/cadastro" class="item fonte-cor-menu-admin">
+                Cadastre-se
+            </a>
+            <a href="{{ base_url()|raw }}" class="item fonte-cor-menu-admin">
+                <i class="sign in icon"></i>
+                Entrar
+            </a>
+        {% endif %}
+    </div>
+</nav>

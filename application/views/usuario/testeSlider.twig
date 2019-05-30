@@ -1,0 +1,65 @@
+{% extends "base.twig" %}
+
+{% block title %}Timeline - {{ nome }}{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+        <span class="section">Timeline</span>
+        <i class="right chevron icon divider"></i>
+        <span class="section">{{ nome }}</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile four wide tablet three wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile eight wide tablet seven wide computer centered column{% endblock %}
+
+{% block right_class %}sixteen wide mobile four wide tablet four wide computer centered column{% endblock %}
+
+{% block left_content %}{% endblock %}
+
+{% block right_content %}{% endblock %}
+
+{% block content %}
+{#    <div class="carousel">#}
+{#        <input id="image1" type="radio" name="image-selector" checked="checked" />#}
+{#        <label for="image4">View image 4</label>#}
+{#        <img src="http://lorempixel.com/400/300/sports/1" />#}
+
+{#        <input id="image2" type="radio" name="image-selector" />#}
+{#        <label for="image1">View image 1</label>#}
+{#        <img src="http://lorempixel.com/400/300/sports/2" />#}
+
+{#        <input id="image3" type="radio" name="image-selector" />#}
+{#        <label for="image2">View image 2</label>#}
+{#        <img src="http://lorempixel.com/400/300/sports/3" />#}
+
+{#        <input id="image4" type="radio" name="image-selector" />#}
+{#        <label for="image3">View image 3</label>#}
+{#        <img src="http://lorempixel.com/400/300/sports/4" />#}
+
+{#        <label for="image4">View image 4</label>#}
+{#        <label for="image1">View image 1</label>#}
+{#    </div>#}
+
+
+
+    <div class="row">
+        <br>
+        <div class="ui container">
+            <span class="hidden" id="qtd_bd">{{ totalPosts|raw }}</span>
+            <div class="ui segment posts">
+                <h3 class="ui dividing header">{{ qtd|raw }} Postagens Recentes</h3>
+                {#Posts#}
+            </div>
+        </div>
+    </div>
+{% endblock %}

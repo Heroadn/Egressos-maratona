@@ -1,0 +1,51 @@
+<div class="ui container">
+    {{ form_open|raw }}
+
+    <h4 class="ui dividing header">Escreva seu Comentário</h4>
+
+
+    <div class="field">
+
+        <div class="ui small blue message">Conteudo: Maximo 500 caracteres!(Caracteres especiais ainda não permitidos)
+            <i class="close icon blue"></i>
+        </div>
+
+        {{ label_conteudo|raw }}
+        {{ input_conteudo|raw }}
+
+        {% if (erros_validacao['erros_conteudo']) %}
+
+            {{ erros_validacao['erros_conteudo']|raw }}
+
+        {% endif %}
+
+    </div>
+    <div class="ui grid comen">
+        <input type="hidden" name="idPost" value="{{ id_post|raw }}">
+        <div class="eight wide column comen">
+            {{ button_confirm|raw }}
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="ui basic modal">
+    <div class="ui icon header">
+        <i class="yellow exclamation triangle icon"></i>
+        Você tem certeza que deseja publicar?
+    </div>
+    <div class="content" id="content-modal">
+        <p>OBS: Irá aparecer para todos os usuários!</p>
+    </div>
+    <div class="actions">
+        <button class="ui red cancel labeled icon button"><i class="remove icon"></i>Cancelar</button>
+        {{ button_submit|raw }}
+    </div>
+</div>
+
+
+
+{{ form_close|raw }}
+</div>

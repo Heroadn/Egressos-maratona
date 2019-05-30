@@ -1,0 +1,29 @@
+<div class="ui segment">
+    <div class="ui minimal comments">
+        <h3 class="ui dividing header">Comentários: (Apenas teste de template)</h3>
+        {% for coment in comentarios%}
+            <div class="comment">
+                <div class="sixteen wide column">
+                    <div class="two wide column">
+                        <a class="">
+                            <img class="mini circular ui image" src="{{ coment['foto_comentario']|raw }}">
+                        </a>
+                    </div>
+                    <div class="fourteen wide column">
+                        <div class="content">
+                            <a class="author">{{ coment['nome']|raw }}</a>
+                            <div class="metadata">
+                                <span class="date">{{ coment['data_comentario']|raw }}</span>
+                            </div>
+                            <div class="text">
+                                {{ coment['comentario']|raw }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'usuario/geradorComentario.twig' %}
+
+</div>

@@ -1,0 +1,214 @@
+{% extends "base.twig" %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+        <span class="section">Perfil</span>
+        <i class="right chevron icon divider"></i>
+        <span class="section">{{ username|raw }}</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile four wide tablet three wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile eight wide tablet seven wide computer centered column{% endblock %}
+
+{% block right_class %}sixteen wide mobile four wide tablet four wide computer centered column{% endblock %}
+
+{% block left_content %}
+    <div class="row">
+        {% include 'usuario/conteudoEsquerda.twig' %}
+
+    <div class="ui container">
+        <div class="ui card">{# sticky #}
+
+            <div class="content">
+                <div class="description">
+                    <p>Informações Pessoais:</p>
+                    <p>Curso: {{ curso["curso"] }}</p>
+                    <p>Turma: {{ turma["turma"] }}  Ano Egresso: {{ usuario["ano_egresso"] }}</p>
+                    <p>Campus: {{ campus["nome"] }} </p>
+                    <p>Ocupação Atual: {% if usuario['trabalho_atual'] == 'vazio' %} <a href="{{ base_url("Usuario/editar")|raw }}">Adicionar</a>{% else %} {{ usuario["trabalho_atual"] }} {% endif %}</p>
+                </div>
+            </div>
+            <div class="extra content">
+                <a href="{{ base_url("Usuario/editar") }}" class="item">
+                    <i class="pencil alternate icon"></i>
+                    Editar Dados Cadastrais
+                </a>
+            </div>
+            <div class="extra content">
+                 <a id="modifyFoto" class="item">
+                    <i class="pencil alternate icon"></i>
+
+                    Editar Foto de Perfil
+                </a>
+            </div>
+            <div class="extra content">
+                <a class="item" id="Geralbt">
+                    <i class="suitcase icon"></i>
+                    Contatos e Formações Acadêmicas
+                </a>
+            </div>
+            <div class="extra content">
+                <a class="item" id="Amgsbt">
+                    <i class="users icon"></i>
+                    Amigos
+                </a>
+            </div>
+            <div class="extra content">
+                <a class="item" id="Notifbt">
+                    <i class="bell icon"></i>
+                    Notificacoes  <div class="ui red label">{{ nr_notificacoes }}</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% include 'usuario/modalFotoUsuario.twig' %}
+
+
+{% endblock %}
+
+{% block content %}
+    <div class="row hidden" id="Geral">
+        <div class="ui container">
+            <div class="ui segment">
+
+                <div class="ui segment">
+                    <h3 class="ui header">Contatos:</h3>
+                    <h5>Facebook: {% if usuario['facebook'] == 'vazio' %} <a href="{{ base_url("Usuario/editar") }}">Adicionar</a> {% else %} <a href="{{ usuario["facebook"] }}">{{ usuario['nome'] }}</a> {% endif %}</h5>
+                    <h5>Linkedin: {% if usuario['linkedin'] == 'vazio' %} <a href="{{ base_url("Usuario/editar") }}">Adicionar</a> {% else %} <a href="{{ usuario["linkedin"] }}">{{ usuario['nome'] }}</a> {% endif %}</h5>
+                    <h5>Email: {{ usuario["email"] }} </h5>
+                </div>
+                <div class="ui segment">
+                    <h3 class="ui header">Formação Academica:</h3>
+                    {% if usuario['formacao_academica'] == 'vazio' %} <a href="{{ base_url("Usuario/editar") }}">Adicionar</a>{% else %} {% for item in formacao %} <h5> {{ item|e }} </h5> {% endfor %} {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row hidden" id="Notif">
+    {% if nr_notificacoes == 0 %}
+        <div class="ui container">
+            <div class="ui positive message">
+                <i class="close icon"></i>
+                <div class="header">
+                    Nenhuma Notificação no Momento
+                </div>
+            </div>
+        </div>
+    {% else %}
+       <div class="ui container">
+            <div class="ui segment">
+                <h3 class="ui header">Notificações:</h3>
+                <div class="ui middle aligned divided list">
+
+                    {% for notificacao in notificacoes %}
+                        {% if notificacao['tipo_notificacao_id_tipo'] == 1 %}
+
+                            <div class="item">
+                                <div class="right floated content ui buttons">
+                                    {{ form_open("Amigo/aceitarSolicitacao")|raw }}
+                                    <button type="submit"  class="ui green button bottom">
+                                        <input type="hidden" value="{{ notificacao['id_origem'] }}" name="id_amigos">
+                                        Aceitar
+                                    </button>
+                                    {{ form_close() }}
+                                    {{ form_open("Amigo/recusarConvite")|raw }}
+                                    <button type="submit"  class="ui red button bottom">
+                                        <input type="hidden" value="{{ notificacao['id_origem'] }}" name="id_amigos">
+                                        Recusar
+                                    </button>
+                                    {{ form_close() }}
+                                </div>
+                                <img class="ui avatar image" src="{{ notificacao['file_name'] }}">
+                                <div class="content">
+                                    {{ notificacao['texto_notificacao'] }}
+                                </div>
+                            </div>
+
+                        {% else %}
+
+                            <div class="card">
+                                <div class="content">
+                                    <div class="header">Um pedido de amizade:</div>
+                                    <div class="description">
+                                        {{ notificacao['texto_notificacao'] }}
+                                    </div>
+                                </div>
+                                <div class="ui bottom attached button">
+                                    <i class="add icon"></i>
+                                    Ir Para
+                                </div>
+                            </div>
+
+                        {% endif %}
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+       </div>
+    {% endif %}
+    </div>
+
+    <div class="row hidden" id="Amgs">
+        <div class="ui container">
+            <div class="ui segment">
+
+                <div class="ui celled list">
+                    <h5 class="header"><i class="users icon"></i>Amigos: {{ num_amigos }}</h5>
+
+                    {% for amigo in amigos %}
+
+
+                <div class="item">
+                    <img class="ui avatar image" src="{{ amigo['file_name'] }}">
+                    <div class="content">
+                        <form class="ui form" method="post" action="{{ url_amigos }}" style="margin-top: 0em;">
+                            <div class='field'>
+                                <input name='id_usuario' type='hidden' value="{{ amigo['id_usuario'] }}">
+                            </div>
+                            <div class="header">{{ amigo['nome_completo'] }}
+                                <input type='submit' class='ui mini button' value='Ver perfil'>
+                            </div>
+                        </form>
+                        {{ amigo['descricao'] }}
+
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block right_content %}
+    <div class="row">
+        <div class="ui container">
+            <div class="ui segment">{# sticky #}
+                <div class="row">
+                    <div class="ui search" style="padding: 0.25em; text-align: center;">
+                        <div class="ui icon input" style="width:90%">
+                            {{ input_buscar_usuario|raw }}
+                            <i class="search icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="buscarUsuarioView" id="buscarUsuarioView">
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends "base.twig" %}
+
+{% block title %}Grupo - {{ grupo['nome'] }}{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+<div class="ui segment mini breadcrumb">
+    <span class="section">Grupos</span>
+    <i class="right chevron icon divider"></i>
+    <span class="section">{{ grupo['nome'] }}</span>
+</div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile four wide tablet three wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile eight wide tablet seven wide computer centered column{% endblock %}
+
+{% block right_class %}sixteen wide four four wide tablet four wide computer centered column{% endblock %}
+
+{% block left_content %}
+    <div class="row">
+        <div class="ui container segment centered">
+            <div class="ui grid">
+                <div class="eight wide mobile two wide tablet eight wide computer column">
+                    <div class="ui small image centered" id="foto-usuario">
+                        <img src="{{ grupo['file_name']|raw }}" class="ui image circular align-center" id="imagem-usuario">
+                    </div>
+                </div>
+                <div class="eight wide mobile fourteen wide tablet eight wide computer column">
+                    <h2 class="header">{{ grupo['nome'] }}</h2>
+                </div>
+                <div class="meta">
+                    <span class="date">Turma de {{ grupo['ano'] }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="ui container">
+            <div class="ui card"> {# sticky #}
+                <div class="content">
+                    <div class="description">
+                        {{ grupo['descricao'] }}
+                    </div>
+                </div>
+                <div class="extra content">
+                    <div>
+                        <i class="user icon"></i>
+                        {{ qtd_membros|raw }} Membros
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% include 'usuario/geradorPostagem.twig' %}
+
+        <br>
+        <div class="ui container">
+            <span class="hidden" id="qtd_bd">{{ totalPosts|raw }}</span>
+            <div class="ui segment posts">
+                <h3 class="ui dividing header">{{ qtd|raw }} Postagens Recentes</h3>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block right_content %}
+    <div class="row">
+        <div class="ui container">
+            <div class="ui segment "> {# sticky #}
+                <h4 class="header">Membros do Grupo:</h4>
+                <div class="ui middle aligned divided list">
+
+                    {% for membro in membros %}
+
+                        <div class="item">
+                            <div class="right floated grid content">
+
+                                {% if membro['id_usuario'] == usuario_logado['id_usuario'] %}
+
+
+                                {% elseif membro['id_usuario'] in amigos %}
+
+                                    {{ form_open("Amigo/removerAmigo")|raw }}
+                                    <input type="hidden" value="{{ membro['id_usuario'] }}" name="id_amigo">
+                                    <button type="submit" class="ui bottom red button">
+                                        Cancelar
+                                    </button>
+                                    {{ form_close()|raw }}
+
+                                {% else %}
+
+                                    {{ form_open('Usuario/perfilVisita')|raw }}
+                                    <input name='id_usuario' type='hidden' value='{{ membro['id_usuario'] }}'>
+                                    <input type='submit' class='ui button' value='Ver perfil'>
+                                    {{ form_close()|raw }}
+
+                                {% endif %}
+
+                            </div>
+                            <img class="ui avatar image" src="{{ membro['file_name'] }}">
+                            <div class="content">
+                                {{ "%s %s"|format(membro['nome'], membro['ultimo_nome']) }}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

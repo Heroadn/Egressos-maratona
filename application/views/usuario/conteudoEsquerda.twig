@@ -1,0 +1,14 @@
+
+    <div class="ui container segment centered">
+        <div class="ui grid">
+            <div class="ui centered eight wide mobile two wide tablet eight wide computer column">
+                <div class="ui small" id="foto-usuario">
+                    <img src="{{ file_name|raw }}" class="ui image circular">
+                </div>
+            </div>
+            <div class="ui meta sixteen wide column">
+                <h2 class="ui header center aligned">{{ username|raw }}</h2>
+                <h5 class="ui header date center aligned">Membro desde {{ membro_desde['data'] }}</h5>
+            </div>
+        </div>
+    </div>

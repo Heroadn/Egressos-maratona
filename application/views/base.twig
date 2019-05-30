@@ -1,0 +1,57 @@
+<html>
+    <head>
+        {% block head %}
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="{{ base_url()|raw }}static/semantic/semantic.css"/>
+            <link rel="stylesheet" href="{{ base_url()|raw }}static/base.css"/>
+            <link rel="stylesheet" ref="https://www.w3schools.com/w3css/4/w3.css"/>
+            <link rel="icon" href="{{ base_url()|raw }}/static/images/logo-ifc-vertical.png" type="image/png">
+
+            <title>{% block title %}{% endblock %} - Portal Egressos</title>
+
+        {% endblock %}
+    </head>
+    <body class="{% block body_class %}{% endblock %}">
+
+        <nav>
+            {% block header %}{% endblock %}
+
+                {% block bread %}{% endblock %}
+
+        </nav>
+
+        <article class="{% block master_class %}{% endblock %}" id="example1">
+
+            <aside class="{% block left_class %}{% endblock %} esquerda">
+                {% block left_content %}{% endblock %}
+            </aside>
+
+            <section class="{% block mid_class %}{% endblock %} centro">
+                {% block content %}{% endblock %}
+            </section>
+
+            <aside class="{% block right_class %}{% endblock %} direita">
+                {% block right_content %}{% endblock %}
+            </aside>
+
+        </article>
+
+            {% block footer %}{% endblock %}
+
+        {% block scripts %}
+            <script src="{{ base_url()|raw }}static/semantic/jquery-3.3.1.js"></script>
+            <script src="{{ base_url()|raw }}static/semantic/semantic.min.js"></script>
+            <script src="{{ base_url()|raw }}static/semantic/menu.js"></script>
+            <script src="{{ base_url()|raw }}static/scripts.js"></script>
+            <script src="{{ base_url()|raw }}static/jcycle.js"></script>
+{#            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle/3.0.3/jquery.cycle.all.js"></script>#}
+            <script src="{{ base_url()|raw }}static/js-cookie-master/src/js.cookie.js"></script>
+
+            <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+
+            <script src="{{ base_url()|raw }}static/editor.js"></script>
+        {% endblock %}
+
+    </body>
+</html>

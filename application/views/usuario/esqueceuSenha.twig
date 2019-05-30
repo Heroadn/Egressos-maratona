@@ -1,0 +1,61 @@
+{% extends "base.twig" %}
+
+{% block title %}Recuperar Senha{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+    <span class="section">Login</span>
+        <i class="right chevron icon divider"></i>
+        <span class="section">Recuperar Senha</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile twelve wide tablet ten wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile twelve wide tablet eight wide computer centered column{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block left_content %}
+    <div class="row">
+        <h1 class="color-h-green"> Recuperar Senha</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ form_open_esqueceu_senha|raw }}
+    <div class="row">
+        {% if( msg_trocar_senha ) %}
+            <aside class="{{ classe_trocar_senha|raw }}">
+                <h3 class="header">
+                    {{ msg_trocar_senha|raw }}
+                </h3>
+            </aside>
+        {% endif %}
+        {% if( msg_nao_pode_trocar_senha ) %}
+            <aside class="{{ classe_nao_pode_trocar_senha|raw }}">
+                <h3 class="header">
+                    {{ msg_nao_pode_trocar_senha|raw }}
+                </h3>
+            </aside>
+        {% endif %}
+        <div class="field">
+            {{ label_email|raw }}
+            {{ input_email|raw }}
+
+        </div>
+    </div>
+    <div class="ui grid">
+        <div class="sixteen wide column">
+            {{ form_button|raw }}
+        </div>
+    </div>
+    {{ form_close|raw }}
+
+{% endblock %}

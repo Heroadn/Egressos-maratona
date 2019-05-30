@@ -1,0 +1,280 @@
+{% extends "base.twig" %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+    <span class="section">Login</span>
+    <i class="right chevron icon divider"></i>
+    <span class="section">Cadastro</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid cad{% endblock %}
+
+{% block left_class %}hidden{% endblock %}
+
+{% block mid_class %}sixteen wide mobile twelve wide tablet ten wide computer centered column{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block content %}
+    <h1 class="color-h-green"> Cadastro de Usuário</h1>
+    <div class="row">
+    {{ form_open|raw }}
+            <div class="field">
+
+                <div class="ui small blue message">Nome e o Sobrenome: Não podem ter caracteres especiais e/ou numeros!
+                    <i class="close icon blue"></i>
+                </div>
+
+                {{ label_nome|raw }}
+                {{ input_nome|raw }}
+
+                {% if (erros_validacao['erros_nome']) %}
+
+                    {{ erros_validacao['erros_nome']|raw }}
+
+                {% endif %}
+
+            </div>
+            <div class="field">
+
+                {{ label_ultimo_nome|raw }}
+                {{ input_ultimo_nome|raw }}
+
+                {% if (erros_validacao['erros_ultimo_nome']) %}
+
+                    {{ erros_validacao['erros_ultimo_nome']|raw }}
+
+                {% endif %}
+
+            </div>
+            <div class="raised field">
+
+                <div class="ui small blue message">Email: Válido, pois sera verificado posteriormente!
+                    <i class="close icon blue"></i>
+                </div>
+
+                {{ label_email|raw }}
+                {{ input_email|raw }}
+
+                {% if (erros_validacao['erros_email']) %}
+
+                    {{ erros_validacao['erros_email']|raw }}
+
+                {% endif %}
+
+            </div>
+        <div class="ui info olive message">
+            <i class="close icon"></i>
+            <div class="header">
+                Regras para a definição de Senha:
+            </div>
+            <ul class="list">
+                <li>A senha tem que ser maior que 7 caracteres;</li>
+                <li>A senha deverá ter pelo menos um numero e uma letra.</li>
+            </ul>
+        </div>
+        <div class="two fields">
+            <div class="field">
+
+
+                {{ label_senha|raw }}
+                {{ input_senha|raw }}
+
+                {% if (erros_validacao['erros_senha']) %}
+
+                    {{ erros_validacao['erros_senha']|raw }}
+
+                {% endif %}
+
+
+            </div>
+            <div class="field">
+
+                {{ label_Rsenha|raw }}
+                {{ input_Rsenha|raw }}
+
+                {% if (erros_validacao['erros_Rsenha']) %}
+
+                    {{ erros_validacao['erros_Rsenha']|raw }}
+
+                {% endif %}
+
+            </div>
+        </div>
+            <div class="field">
+
+                {{ label_campus|raw }}
+                {{ dropdown_campus|raw }}
+
+                {% if (erros_validacao['erros_campus']) %}
+
+                    {{ erros_validacao['erros_campus']|raw }}
+
+                {% endif %}
+
+            </div>
+            <div class="field">
+
+                {{ label_curso|raw }}
+                {{ dropdown_curso|raw }}
+
+                {% if (erros_validacao['erros_curso']) %}
+
+                    {{ erros_validacao['erros_curso']|raw }}
+
+                {% endif %}
+
+            </div>
+
+            <div class="field">
+
+                {{ label_turmas|raw }}
+                {{ dropdown_turmas|raw }}
+
+                {% if (erros_validacao['erros_turmas']) %}
+
+                    {{ erros_validacao['erros_turmas']|raw }}
+
+                {% endif %}
+
+            </div>
+            <div class="field">
+
+                <div class="ui small blue message">Ano: Deverá ser o ano de Ingresso!
+                    <i class="close icon blue"></i>
+                </div>
+
+                {{ label_ano|raw }}
+                {{ input_ano|raw }}
+
+                {% if (erros_validacao['erros_ano']) %}
+
+                    {{ erros_validacao['erros_ano']|raw }}
+
+                {% endif %}
+
+            </div>
+        <div class="ui info olive message">
+            <i class="close icon"></i>
+            <div class="header">
+                Defina uma pergunta de segurança:
+            </div>
+            <ul class="list">
+                <li>Ela sera usada para recuperar sua senha caso precise;</li>
+                <li>Escolha uma pergunta que você não se esqueça;</li>
+                <li>Não são permitidos caracteres especiais.</li>
+            </ul>
+        </div>
+        <div class="field">
+
+
+            {{ label_pergunta|raw }}
+            {{ input_pergunta|raw }}
+
+            {% if (erros_validacao['erros_pergunta']) %}
+
+                {{ erros_validacao['erros_pergunta']|raw }}
+
+            {% endif %}
+
+
+        </div>
+        <div class="field">
+
+            {{ label_resposta|raw }}
+            {{ input_resposta|raw }}
+
+            {% if (erros_validacao['erros_resposta']) %}
+
+                {{ erros_validacao['erros_resposta']|raw }}
+
+            {% endif %}
+
+        </div>
+
+        <div class="field">
+            <div class="ui styled accordion">
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Leia a política de privacidade.
+                </div>
+                <div class="content">
+                    <p class="transition hidden">
+                        <h2>Política de privacidade para <a href='http://egressos.fabricadesoftware.ifc.edu.br'>Portal Egressos</a></h2>
+                        <p>Todas as suas informações pessoais recolhidas, serão usadas para o ajudar a tornar a sua visita no nosso site o mais produtiva e agradável possível.</p>
+                        <p>A garantia da confidencialidade dos dados pessoais dos utilizadores do nosso site é importante para o Portal Egressos.</p>
+                        <p>Todas as informações pessoais relativas a membros, assinantes, clientes ou visitantes que usem o Portal Egressos serão tratadas em concordância com a Lei da Proteção de Dados Pessoais de 26 de outubro de 1998 (Lei n.º 67/98).</p>
+                        <p>A informação pessoal recolhida pode incluir o seu nome, e-mail, número de telefone e/ou telemóvel, morada, data de nascimento e/ou outros.</p>
+                        <p>O uso do Portal Egressos pressupõe a aceitação deste Acordo de privacidade. A equipa do Portal Egressos reserva-se ao direito de alterar este acordo sem aviso prévio. Deste modo, recomendamos que consulte a nossa política de privacidade com regularidade de forma a estar sempre atualizado.</p>
+                        <h2>Os anúncios</h2>
+                        <p>Tal como outros websites, coletamos e utilizamos informação contida nos anúncios. A informação contida nos anúncios, inclui o seu endereço IP (Internet Protocol), o seu ISP (Internet Service Provider, como o Sapo, Clix, ou outro), o browser que utilizou ao visitar o nosso website (como o Internet Explorer ou o Firefox), o tempo da sua visita e que páginas visitou dentro do nosso website.</p>
+                        <h2>Os Cookies e Web Beacons</h2>
+                        <p>Utilizamos cookies para armazenar informação, tais como as suas preferências pessoas quando visita o nosso website. Isto poderá incluir um simples popup, ou uma ligação em vários serviços que providenciamos, tais como fóruns.</p>
+                        <p>Em adição também utilizamos publicidade de terceiros no nosso website para suportar os custos de manutenção. Alguns destes publicitários, poderão utilizar tecnologias como os cookies e/ou web beacons quando publicitam no nosso website, o que fará com que esses publicitários (como o Google através do Google AdSense) também recebam a sua informação pessoal, como o endereço IP, o seu ISP, o seu browser, etc. Esta função é geralmente utilizada para geotargeting (mostrar publicidade de Lisboa apenas aos leitores oriundos de Lisboa por ex.) ou apresentar publicidade direcionada a um tipo de utilizador (como mostrar publicidade de restaurante a um utilizador que visita sites de culinária regularmente, por ex.).</p>
+                        <p>Você detém o poder de desligar os seus cookies, nas opções do seu browser, ou efetuando alterações nas ferramentas de programas Anti-Virus, como o Norton Internet Security. No entanto, isso poderá alterar a forma como interage com o nosso website, ou outros websites. Isso poderá afetar ou não permitir que faça logins em programas, sites ou fóruns da nossa e de outras redes.</p>
+                        <h2>Ligações a Sites de terceiros</h2>
+                        <p>O Portal Egressos possui ligações para outros sites, os quais, a nosso ver, podem conter informações / ferramentas úteis para os nossos visitantes. A nossa política de privacidade não é aplicada a sites de terceiros, pelo que, caso visite outro site a partir do nosso deverá ler a politica de privacidade do mesmo.</p>
+                        <p>Não nos responsabilizamos pela política de privacidade ou conteúdo presente nesses mesmos sites.</p>
+                    </p>
+                </div>
+            </div>
+            <div class="ui styled accordion">
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Leia os termos de uso.
+                </div>
+                <div class="content">
+                    <p class="transition hidden">
+                        <h1>Termos de Serviço </h1>
+                        <p>Última atualização: 12 de novembro de 2018</p>
+                        <p>Leia atentamente estes Termos de Serviço antes de usar o site https://egressos.fabricadesoftware.ifc.edu.br/ operado pelo Portal Egressos.</p>
+                        <p>Seu acesso e uso do Serviço estão condicionados à sua aceitação e conformidade com estes Termos. Estes Termos aplicam-se a todos os visitantes, usuários e outras pessoas que acessam ou usam o Serviço.</p>
+                        <p>Ao acessar ou usar o Serviço, você concorda em ficar vinculado a estes Termos. Se você não concordar com qualquer parte dos termos, não poderá acessar o Serviço. Este contrato de Termos de Serviço para o Portal Egressos é gerenciado pelo <a href="https://termsfeed.com/terms-conditions/generator/">Gerador de Termos e Condições</a>.</p>
+                        <h2>Contas</h2>
+                        <p>Quando você cria uma conta conosco, você deve nos fornecer informações precisas, completas e atuais em todos os momentos. Não fazê-lo constitui uma violação dos Termos, o que pode resultar na rescisão imediata da sua conta no nosso Serviço.</p>
+                        <p>Você é responsável por proteger a senha que você usa para acessar o Serviço e por quaisquer atividades ou ações sob sua senha, esteja sua senha com nosso Serviço ou um serviço de terceiros.</p>
+                        <p>Você concorda em não divulgar sua senha a terceiros. Você deve nos notificar imediatamente após tomar conhecimento de qualquer violação de segurança ou uso não autorizado de sua conta.</p>
+                        <h2>Links para outros sites</h2>
+                        <p>Nosso Serviço pode conter links para sites ou serviços de terceiros que não são de propriedade nem controlados pelo Portal Egressos.</p>
+                        <p>O Portal Egressos não tem controle e não assume nenhuma responsabilidade pelo conteúdo, políticas de privacidade ou práticas de quaisquer sites ou serviços de terceiros. Você também reconhece e concorda que o Portal Egressos não será responsável, direta ou indiretamente, por qualquer dano ou perda causada ou supostamente causada por ou em conexão com o uso ou confiança em qualquer conteúdo, bens ou serviços disponíveis em ou através desses sites ou serviços.</p>
+                        <p>É altamente recomendável que você leia os termos e condições e as políticas de privacidade de quaisquer sites ou serviços de terceiros que você visitar.</p>
+                        <h2>Terminação</h2>
+                        <p>Podemos rescindir ou suspender o acesso ao nosso Serviço imediatamente, sem aviso prévio ou responsabilidade, por qualquer motivo, incluindo, sem limitação, se você violar os Termos.</p>
+                        <p>Todas as disposições dos Termos que, por sua natureza, devam sobreviver à rescisão sobreviverão à rescisão, incluindo, sem limitação, disposições sobre propriedade, isenções de garantia, indenização e limitações de responsabilidade.</p>
+                        <p>Podemos rescindir ou suspender sua conta imediatamente, sem aviso prévio ou responsabilidade, por qualquer motivo, incluindo, sem limitação, se você violar os Termos.</p>
+                        <p>Após a rescisão, o seu direito de usar o Serviço cessará imediatamente. Se você deseja encerrar sua conta, você pode simplesmente interromper o uso do Serviço.</p>
+                        <p>Todas as disposições dos Termos que, por sua natureza, devam sobreviver à rescisão sobreviverão à rescisão, incluindo, sem limitação, disposições sobre propriedade, isenções de garantia, indenização e limitações de responsabilidade.</p>
+                        <h2>Lei Aplicável</h2>
+                        <p>Estes Termos serão regidos e interpretados de acordo com as leis do Brasil, sem levar em conta o conflito de provisões legais.</p>
+                        <p>Nossa falha em aplicar qualquer direito ou disposição destes Termos não será considerada uma renúncia a esses direitos. Se qualquer disposição destes Termos for considerada inválida ou inexequível por um tribunal, as disposições restantes destes Termos permanecerão em vigor. Estes Termos constituem o acordo integral entre nós em relação ao nosso Serviço e substituem quaisquer acordos anteriores que possamos ter entre nós em relação ao Serviço.</p>
+                        <h2>Alterar</h2>
+                        <p>Reservamo-nos o direito, a nosso exclusivo critério, de modificar ou substituir estes Termos a qualquer momento. Se uma revisão for material, tentaremos fornecer pelo menos 30 dias de antecedência antes de quaisquer novos termos entrarem em vigor. O que constitui uma mudança material será determinado a nosso exclusivo critério.</p>
+                        <p>Ao continuar a acessar ou usar nosso Serviço após essas revisões entrarem em vigor, você concorda em ficar vinculado aos termos revisados. Se você não concordar com os novos termos, pare de usar o Serviço.</p>
+                        <h2>Contate-Nos</h2>
+                        <p>Se você tiver alguma dúvida sobre estes Termos, entre em contato conosco.</p>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <p>{{ checkbox_termos|raw }} {{ label_termos|raw }}</p>
+        </div>
+
+        <div class="ui grid">
+            <div class="sixteen wide column">
+
+                {{ button_submit|raw }}
+
+            </div>
+        </div>
+    </div>
+    {{ form_close|raw }}
+{% endblock %}

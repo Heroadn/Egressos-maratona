@@ -1,0 +1,226 @@
+{% extends "administrador/baseAdmin.twig" %}
+
+{% block title %}Administrador{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block header %}{% include "administrador/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+        <span class="section">Administrador</span>
+        <i class="right chevron icon divider"></i>
+        {#<span class="section active" data-tab="first">a</span>#}
+        {#<span class="ui tab section" data-tab="second">b</span>#}
+        {#<span class="section" data-tab="third">c</span>#}
+        {#<span class="section" data-tab="four">d</span>#}
+        {#<span class="section" data-tab="five">e</span>#}
+        <span class="section caminho" data-tab="do you know the way">Publicação Geral</span>
+    </div>
+{% endblock %}
+
+
+{% block footer %}{% include "administrador/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile five wide tablet five wide computer column{% endblock %}
+{% block mid_class %}sixteen wide mobile six wide tablet six wide computer column{% endblock %}
+{% block right_class %}sixteen wide mobile five wide tablet five wide computer column{% endblock %}
+
+{% block left_content %}
+    <div class="row blocoEsquerdo">
+
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row blocoMeio">
+        <div class="ui tab active" data-tab="first">
+            {% include 'usuario/geradorPostagem.twig' %}
+        </div>
+        <div class="ui tab" data-tab="second">
+            <div class="active content">
+
+                {{ form_open_grupo|raw }}
+
+                <div class="field">
+                    <div class="ui small blue message">Título: Minimo 5 e Maximo 50 caracteres!(Caracteres especiais ainda não permitidos)
+                        <i class="close icon blue"></i>
+                    </div>
+
+                    {{ label_titulo_grupo|raw }}
+                    {{ input_titulo_grupo|raw }}
+
+                    {% if (erros_validacao['erros_titulo']) %}
+
+                        {{ erros_validacao['erros_titulo']|raw }}
+
+                    {% endif %}
+
+                </div>
+
+                <div class="field">
+
+                    {{ label_grupo|raw }}
+                    {{ dropdown_grupo|raw }}
+
+                </div>
+
+                <div class="field">
+
+                    <div class="ui small blue message">Conteudo: Minimo 10 e Maximo 500 caracteres!(Caracteres especiais ainda não permitidos)
+                        <i class="close icon blue"></i>
+                    </div>
+
+                    {{ label_conteudo_grupo|raw }}
+                    {{ input_conteudo_grupo|raw }}
+
+                    {% if (erros_validacao['erros_conteudo']) %}
+
+                        {{ erros_validacao['erros_conteudo']|raw }}
+
+                    {% endif %}
+
+                </div>
+                <div class="ui grid comen">
+                    <div class="sixteen wide column comen">
+                        {{ button_submit_grupo|raw }}
+                    </div>
+                </div>
+
+                {{ form_close_grupo|raw }}
+
+            </div>
+        </div>
+        <div class="ui tab segment" data-tab="third">
+            <div class="ui search" style="padding: 0.25em; text-align: center;">
+                <div class="ui icon centered input" style="width:90%">
+                    {{ input_buscar_grupo|raw }}
+                    <i class="search icon"></i>
+                </div>
+            </div>
+            <span class="hidden" id="qtd_bd_Grupos">{{ qtd_bd_grupos|raw }}</span>
+            <span class="hidden" id="buscarGrupoValInput"></span>
+            <div class="buscarGrupoView scroll-admin"  id="buscarGrupoView">
+            </div>
+        </div>
+        <div class="ui tab segment" data-tab="four">
+            <div class="ui search" style="padding: 0.25em; text-align: center;">
+                <div class="ui icon input" style="width:90%">
+                    {{ input_buscar_usuario|raw }}
+                    <i class="search icon"></i>
+                </div>
+            </div>
+            <span class="hidden" id="qtd_bd_Usuarios">{{ qtd_bd_usuarios|raw }}</span>
+            <span class="hidden" id="buscarUsuarioValInput"></span>
+            <div class="buscarUsuarioView scroll-admin" id="buscarUsuarioView">
+            </div>
+        </div>
+        <div class="ui tab segment" data-tab="five">
+            <div class="content ui input">
+                Em desenvolvimento
+            </div>
+        </div>
+        <div class="ui tab segment" data-tab="six">
+            <div class="active content">
+                {{ form_open_relatorio|raw }}
+                <div class="content icon input">
+                    <div class="ui grid comen">
+                        <div class="field">
+                            {{ label_campus|raw }}
+                            {{ dropdown_campus|raw }}
+                        </div>
+                        <div class="field">
+                            {{ label_curso|raw }}
+                            {{ dropdown_curso|raw }}
+                        </div>
+
+                        <div class="field">
+                            {{ label_turmas|raw }}
+                            {{ dropdown_turmas|raw }}
+                        </div>
+
+                        <div class="ui small blue message">Selecione quais campos deveriam ser gerados no CSV (Deixe "Padrão" marcado para gerar um csv com os campos padrões)
+                            <i class="close icon blue"></i>
+                        </div>
+
+                        <div class="field">
+                            Padrão<br>
+                            <label class="switch">
+                                {{ check_todos|raw }}
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="field">
+                            Nome<br>
+                            <label class="switch">
+                                {{ check_nome|raw }}
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="field">
+                            Email<br>
+                            <label class="switch">
+                                {{ check_email|raw }}
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="field">
+                            Campus<br>
+                            <label class="switch">
+                                {{ check_campus|raw }}
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="field">
+                            Curso<br>
+                            <label class="switch">
+                                {{ check_curso|raw }}
+                                <span class="slider round"></span>
+                            </label>
+
+                        </div>
+                        <div class="field">
+                            Turma<br>
+                            <label class="switch">
+                                {{ check_turma|raw }}
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="field">
+                            Ano de Egresso<br>
+                            <label class="switch">
+                                {{ check_ano_egresso|raw }}
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        <div class="sixteen wide column comen">
+
+                            {{ button_submit_relatorio|raw }}
+                        </div>
+                    </div>
+                </div>
+                {{ form_close_relatorio|raw }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block right_content %}
+    <div class="row blocoDireito">
+        <div class="ui" data-tab="enviarEmail">
+            <div id="formEmail">
+            </div>
+        </div>
+        <div class="ui inverted labeled icon left inline vertical sidebar menu" id="menusumir">
+            <div class="item limparEnvioEmail" data-tab="first"><i class="bullhorn icon"></i>Publicação Geral</div>
+            <div class="item limparEnvioEmail" data-tab="second"><i class="edit outline icon"></i>Publicação em Grupo</div>
+            <div class="item limparEnvioEmail" data-tab="third" id="listarGrupo"><i class="list ol icon"></i>Listar Grupo</div>
+            <div class="item limparEnvioEmail" data-tab="four" id="listarUsuario"><i class="user circle icon"></i>Listar Usuário</div>
+            <div class="item limparEnvioEmail" data-tab="five" ><i class="clipboard outline icon"></i>Criar formulário</div>
+            <div class="item limparEnvioEmail" data-tab="six"><i class="clipboard outline icon"></i>Gerar relatório</div>
+        </div>
+    </div>
+{% endblock %}

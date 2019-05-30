@@ -1,0 +1,52 @@
+{% extends "base.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile twelve wide tablet ten wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile twelve wide tablet eight wide computer centered column{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block left_content %}
+    <div class="row">
+        <h1 class="color-h-green"> Recuperar Senha</h1>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {{ form_open_nova_senha|raw }}
+    <div class="row">
+        {% if( msg_trocar_senha5 ) %}
+            <aside class="{{ classe_trocar_senha5|raw }}">
+                <h3 class="header">
+                    {{ msg_trocar_senha5|raw }}
+                </h3>
+            </aside>
+        {% endif %}
+        <div class="field">
+            {{ label_senha|raw }}
+            {{ input_senha|raw }}
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="field">
+            {{ label_senha_confirma|raw }}
+            {{ input_senha_confirma|raw }}
+        </div>
+    </div>
+    <div class="ui grid">
+        <div class="sixteen wide column">
+            {{ form_button|raw }}
+        </div>
+    </div>
+    {{ form_close|raw }}
+
+{% endblock %}
