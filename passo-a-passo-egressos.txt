@@ -1,0 +1,9 @@
+aplication/config/hybridauth.php
+	-	alterar o #SEU_ID e sua #SECRET_KEY
+
+aplication/controllers/PortalEgresso.php
+	-	alterar #seuEmail
+
+aplication/Model/Model_usuario.php
+	- Alterar #seuEmail
+	- Alterar #senhaDoEmail
