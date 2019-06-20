@@ -1,6 +1,5 @@
 .DS_Store
 .DS_Store
-.testCI/
 
 application/cache/*
 !application/cache/index.html
