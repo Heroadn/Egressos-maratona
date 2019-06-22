@@ -257,7 +257,7 @@ if ( ! function_exists('get_config'))
 			elseif ( ! $found)
 			{
 				set_status_header(503);
-				echo 'The configuration file does not exist.';
+				echo 'The configuration file does not exist. '.ENVIRONMENT;
 				exit(3); // EXIT_CONFIG
 			}
 
