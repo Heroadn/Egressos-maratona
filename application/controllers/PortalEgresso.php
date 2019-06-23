@@ -77,7 +77,6 @@ class PortalEgresso extends CI_Controller{
 
         if ($this->form_validation->run() == FALSE)
         {
-
             $dados_campus = $this->Model_cadastro->selectCampus();
             $dados_cursos = '';
             $dados_turmas = '';
