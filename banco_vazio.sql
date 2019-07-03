@@ -1,17 +1,18 @@
 create schema zadmin_hackthon;
+use zadmin_hackthon;
 
 create table turma(
-	id INTEGER AUTO_INCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(80) NOT NULL
 );
 
 create table curso(
-	id INTEGER AUTO_INCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(80) NOT NULL
 );
 
 create table usuarios(
-	id INTEGER AUTO_INCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
     ultimo_nome VARCHAR(50) NOT NULL,
     email VARCHAR(80) NOT NULL,
