@@ -678,5 +678,6 @@ and midia_usuario.usuario_id_usuario = usuario.id_usuario and id_usuario = $id")
     public function getIdCampusUsuario($id_curso){
         $id = $id_curso['id_curso'];
         return ($this->db->query("select curso.id_campus from curso where curso.id_curso = $id")->row_array());
-    }
+    } 
+    
 }
