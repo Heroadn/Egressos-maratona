@@ -77,15 +77,15 @@ class Model_usuario extends CI_Model{
         $config['mailpath'] = "/usr/bin/sendmail";
         $config['smtp_crypto'] = 'tls';
         $config['protocol'] = "smtp";
-        $config['smtp_host'] = "smtp.gmail.com";
+        $config['smtp_host'] = "desenvolvedor.tech";
         $config['smtp_port'] = "587";
         $config['mailtype'] = 'html';
         $config['charset']  = 'utf-8';
         $config['newline']  = "\r\n";
         $config['wordwrap'] = TRUE;
 
-        $config['smtp_user'] = '#seuEmail';
-        $config['smtp_pass'] = '#senhaDoEmail';
+        $config['smtp_user'] = 'hackathon@desenvolvedor.tech';
+        $config['smtp_pass'] = 'hackathanos40028922';
 
         $this->email->initialize($config);
         $this->email->from($from, $fromName);
