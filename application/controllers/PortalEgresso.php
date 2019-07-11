@@ -151,7 +151,7 @@ class PortalEgresso extends CI_Controller{
 
             $assunto = "Email de Verificação da Conta de: " . $usuario["nome"] . " - Portal Egressos";
             $mensagem = "Para ativar sua conta, clique no link a seguir:{unwrap}".base_url()."/Usuario/validarEmail?token=" . $token . "{/unwrap}";
-            $this->Model_usuario->enviarEmail("#seuemail", "Portal Egressos", $usuario['email'], $usuario['nome'], $assunto, $mensagem);
+            $this->Model_usuario->enviarEmail("hackathon@desenvolvedor.tech", "Portal Egressos", $usuario['email'], $usuario['nome'], $assunto, $mensagem);
 
             $form["button_login"] = anchor("PortalEgresso", "<i class=\"sign out alternate ui icon\"></i>Login</a>", 'class="color-a-brown"');
             $form["usuario_logado"] = $this->session->userdata("usuario_logado");
@@ -285,7 +285,7 @@ class PortalEgresso extends CI_Controller{
             $this->Model_usuario->salvarCodigo($email, $codigo_bcrypt);
             $assunto = "Email para recuperação de conta - Portal Egressos";
             $mensagem = "Para recuperar sua conta digite este código {unwrap}$codigo{/unwrap} no campo do formulário.";
-            $this->Model_usuario->enviarEmail("#seuEmail", "Portal Egressos", $email, $nome, $assunto, $mensagem);
+            $this->Model_usuario->enviarEmail("hackathon@desenvolvedor.tech", "Portal Egressos", $email, $nome, $assunto, $mensagem);
             redirect("PortalEgresso/recuperarSenhaPasso3");
         }
         elseif($verificar_email == 2){
