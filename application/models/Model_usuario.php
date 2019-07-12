@@ -99,7 +99,8 @@ class Model_usuario extends CI_Model{
         $this->email->message($message);
 
         $this->email->send();
-
+        echo $this->email->print_debugger();
+        die('<br>Verifique o modelo do usuario<br>');
     }
 
     public function verificaToken($token){
