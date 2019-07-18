@@ -23,7 +23,7 @@ $config['hybridauth'] = array(
         ),
         "Facebook" => array(
             "enabled" => TRUE,
-            "keys" => array("id" => "944857609192270a", "secret" => "39a17449113e00ce1725939e50597302a"), 
+            "keys" => array("id" => "944857609192270", "secret" => "39a17449113e00ce1725939e50597302"), 
             "trustForwarded" => FALSE,
         ),
         "Twitter" => array(
