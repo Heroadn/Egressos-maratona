@@ -1,9 +1,6 @@
 <IfModule mod_rewrite.c>
-   RewriteEngine On
-   RewriteBase /portal-egressos/
-   RewriteCond %{REQUEST_URI} ^system.*
-   RewriteRule ^(.*)$ /index.php/$1 [L]
-   RewriteCond %{REQUEST_FILENAME} !-f
-   RewriteCond %{REQUEST_FILENAME} !-d
-   RewriteRule ^(.*)$ index.php/$1 [L]
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L] 
 </IfModule>
