@@ -70,3 +70,6 @@ static/images/*
 /tests/tests/
 /tests/results/
 /static/images/users/*
+
+##Sensitive info -- move to config
+application/models/Model_usuario.php
