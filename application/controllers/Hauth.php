@@ -67,7 +67,6 @@ class Hauth extends CI_Controller {
     {
         if (isset($_REQUEST['hauth_start']) || isset($_REQUEST['hauth_done']))
         {
-            var_dump(Hybrid_Endpoint);die();
             Hybrid_Endpoint::process();
         }
     }
