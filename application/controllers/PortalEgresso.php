@@ -150,7 +150,7 @@ class PortalEgresso extends CI_Controller{
 
             $assunto = "Email de Verificação da Conta de: " . $usuario["nome"] . " - Portal Egressos";
             $mensagem = "Para ativar sua conta, clique no link a seguir:{unwrap}".base_url()."/Usuario/validarEmail?token=" . $token . "{/unwrap}";
-            $this->Model_usuario->enviarEmail("#seuemail", "Portal Egressos", $usuario['email'], $usuario['nome'], $assunto, $mensagem);
+            $this->Model_usuario->enviarEmail("hackthanos@acid-software.net", "Portal Egressos", $usuario['email'], $usuario['nome'], $assunto, $mensagem);
 
             $form["button_login"] = anchor("PortalEgresso", "<i class=\"sign out alternate ui icon\"></i>Login</a>", 'class="color-a-brown"');
             $form["usuario_logado"] = $this->session->userdata("usuario_logado");
