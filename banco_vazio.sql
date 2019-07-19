@@ -51,6 +51,12 @@ create table usuario(
     FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
 );
 
+create table amigos(
+    id_amigos INTEGER PRIMARY KEY AUTO_INCREMENT
+    #id_origem
+);
+
+
 create table midia(
 	id_midia INTEGER PRIMARY KEY AUTO_INCREMENT,
     file_ID INTEGER NOT NULL,
@@ -76,6 +82,24 @@ create table midia_grupo(
     grupo_id_grupo INTEGER NOT NULL,
     FOREIGN KEY (midia_file_ID) REFERENCES midia(id_midia),
     FOREIGN KEY (grupo_id_grupo) REFERENCES grupo(id_grupo)
+);
+
+create table tipo_notificacao(
+    id_tipo INTEGER PRIMARY KEY AUTO_INCREMENT,
+);
+
+create table notificacao(
+    id_notificacao INTEGER PRIMARY KEY AUTO_INCREMENT,
+    texto_notificacao TEXT,
+    tipo_notificacao_id_tipo INTEGER,
+    id_origem INTEGER,
+    id_usuario_para INTEGER,
+    id_usuario_de INTEGER,
+    id_status INTEGER,
+    FOREIGN KEY (tipo_notificacao_id_tipo) REFERENCES tipo_notificacao(id_tipo),
+    FOREIGN KEY (id_origem) REFERENCES amigos(id_amigos)
+    FOREIGN KEY (id_usuario_de) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_usuario_para) REFERENCES usuario(id_usuario)
 );
 
 INSERT INTO campus(nome) VALUES ('Campus1'), ('ECampus2'), ('Campus3');
