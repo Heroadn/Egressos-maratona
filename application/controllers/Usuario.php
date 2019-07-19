@@ -20,7 +20,6 @@ class Usuario extends CI_Controller
 
     public function perfil()
     {
-
         $usuario = $this->session->userdata("usuario_logado");
         $usuario_oauth = $this->session->userdata("usuario_oauth");
         $this->load->model("Model_usuario");
@@ -57,8 +56,8 @@ class Usuario extends CI_Controller
         $dados_usuario["amigos"] = $this->Model_usuario->buscarAmigos();
         $dados_usuario["url_amigos"] = base_url("Usuario/perfilVisita");
         $dados_usuario["num_amigos"] = $this->Model_usuario->countAmigos();
-        $this->twig->display('usuario/perfil', $dados_usuario);
 
+        $this->twig->display('usuario/perfil', $dados_usuario);
     }
 
     public function autenticar()
