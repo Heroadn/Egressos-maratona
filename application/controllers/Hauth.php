@@ -22,6 +22,7 @@ class Hauth extends CI_Controller {
      */
     public function window($provider_id)
     {
+        die();
         $params = array(
             'hauth_return_to' => site_url("hauth/window/{$provider_id}"),
         );
