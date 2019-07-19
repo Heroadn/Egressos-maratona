@@ -30,7 +30,6 @@ create table grupo(
 
 create table usuario(
 	id_usuario INTEGER PRIMARY KEY AUTO_INCREMENT,
-    id_tipo_usuario INTEGER NOT NULL,
     nome VARCHAR(50) NOT NULL,
     ultimo_nome VARCHAR(50) NOT NULL,
     email VARCHAR(80) NOT NULL,
@@ -40,11 +39,12 @@ create table usuario(
     pergunta VARCHAR(200) NOT NULL,
 	resposta VARCHAR(200) NOT NULL,
     descricao VARCHAR(200) NOT NULL,
-    id_status INTEGER NOT NULL,
     ano_egresso INTEGER NOT NULL,
     data_criacao DATE NOT NULL,
     nome_completo VARCHAR(100) NOT NULL,
     token VARCHAR(100) NOT NULL,
+    id_tipo_usuario INTEGER NOT NULL,
+    id_status INTEGER NOT NULL,
     id_turma INTEGER NOT NULL,
     id_grupo INTEGER NOT NULL,
     FOREIGN KEY (id_turma) REFERENCES turma(id_turma),
@@ -53,7 +53,6 @@ create table usuario(
 
 create table amigos(
     id_amigos INTEGER PRIMARY KEY AUTO_INCREMENT
-    #id_origem
 );
 
 
@@ -85,7 +84,7 @@ create table midia_grupo(
 );
 
 create table tipo_notificacao(
-    id_tipo INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_tipo INTEGER PRIMARY KEY AUTO_INCREMENT
 );
 
 create table notificacao(
@@ -97,9 +96,30 @@ create table notificacao(
     id_usuario_de INTEGER,
     id_status INTEGER,
     FOREIGN KEY (tipo_notificacao_id_tipo) REFERENCES tipo_notificacao(id_tipo),
-    FOREIGN KEY (id_origem) REFERENCES amigos(id_amigos)
+    FOREIGN KEY (id_origem) REFERENCES amigos(id_amigos),
     FOREIGN KEY (id_usuario_de) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_usuario_para) REFERENCES usuario(id_usuario)
+);
+
+create table post(
+    id_post INTEGER PRIMARY KEY AUTO_INCREMENT,
+    data DATE,
+    descricao VARCHAR(255),
+    id_status INTEGER,
+    id_usuario INTEGER,
+    id_grupo INTEGER,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
+);
+
+create table curtidas(
+    id_curtidas INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_post INTEGER,
+    id_user INTEGER,
+    id_status INTEGER,
+    data_like DATE,
+    data_dislike DATE,
+    FOREIGN KEY (id_user) REFERENCES usuario(id_usuario)
 );
 
 INSERT INTO campus(nome) VALUES ('Campus1'), ('ECampus2'), ('Campus3');

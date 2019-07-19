@@ -5,7 +5,6 @@ class Model_postagem extends CI_Model
 
     public function salva($post)
     {
-
         $this->db->insert("post", $post);
         return $this->db->insert_id();
 
