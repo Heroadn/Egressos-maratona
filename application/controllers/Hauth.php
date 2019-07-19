@@ -58,8 +58,6 @@ class Hauth extends CI_Controller {
         catch (Exception $e)
         {
             show_error($e->getMessage());
-            var_dump($e->getMessage());
-            die();
         }
     }
     /**
