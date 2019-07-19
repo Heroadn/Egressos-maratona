@@ -103,8 +103,9 @@ create table notificacao(
 
 create table post(
     id_post INTEGER PRIMARY KEY AUTO_INCREMENT,
-    data DATE,
     descricao VARCHAR(255),
+    titulo VARCHAR(80) NOT NULL,
+    data DATE NOT NULL,
     id_status INTEGER,
     id_usuario INTEGER,
     id_grupo INTEGER,
