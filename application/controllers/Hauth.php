@@ -37,9 +37,6 @@ class Hauth extends CI_Controller {
             $oauth = $profile->identifier;
             $this->load->model('Model_usuario');
             $verificaOauth = $this->Model_usuario->verificarOauth($email, $oauth);
-
-            var_dump($verificaOauth);
-            die();
             if($verificaOauth == 1){
                 $profile = (array) $profile;
                 $this->session->set_userdata("usuario_oauth", $profile);
@@ -61,6 +58,8 @@ class Hauth extends CI_Controller {
         catch (Exception $e)
         {
             show_error($e->getMessage());
+            var_dump($e->getMessage());
+            die();
         }
     }
     /**
