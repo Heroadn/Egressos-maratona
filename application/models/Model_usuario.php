@@ -72,22 +72,6 @@ class Model_usuario extends CI_Model{
     public function enviarEmail($from, $fromName, $to, $toName, $subject, $message, $reply = null, $replyName = null){
 
         $this->load->library('email');
-        $config = array();
-        $config['useragent'] = "CodeIgniter";
-        $config['mailpath'] = "/usr/bin/sendmail";
-        $config['smtp_crypto'] = 'tls';
-        $config['protocol'] = "smtp";
-        $config['smtp_host'] = "desenvolvedor.tech";
-        $config['smtp_port'] = "587";
-        $config['mailtype'] = 'html';
-        $config['charset']  = 'utf-8';
-        $config['newline']  = "\r\n";
-        $config['wordwrap'] = TRUE;
-
-        $config['smtp_user'] = 'hackathon@desenvolvedor.tech';
-        $config['smtp_pass'] = 'hackathanos40028922';
-
-        $this->email->initialize($config);
         $this->email->from($from, $fromName);
         $this->email->to($to, $toName);
 
