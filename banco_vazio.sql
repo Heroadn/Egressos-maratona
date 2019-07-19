@@ -56,6 +56,7 @@ create table usuario(
 
 create table amigos(
     id_amigos INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_status INTEGER, 
     id_usuario1 INTEGER,
     id_usuario2 INTEGER,
     FOREIGN KEY (id_usuario1) REFERENCES usuario(id_usuario),
