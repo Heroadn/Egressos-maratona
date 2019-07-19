@@ -29,10 +29,6 @@ class Hauth extends CI_Controller {
         {
             $params['openid_identifier'] = $_REQUEST['openid_identifier'];
         }
-
-        var_dump($params);
-        die();
-        
         try
         {
             $adapter = $this->hybridauth->HA->authenticate($provider_id, $params);
