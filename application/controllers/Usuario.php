@@ -26,6 +26,8 @@ class Usuario extends CI_Controller
         $this->load->model("Model_usuario");
         $id_turma = $usuario['id_turma'];
         $dados_usuario["file_name"] = $this->getCaminhoFoto($usuario["id_usuario"]);
+        var_dump($dados_usuario);
+        die();
         $this->load->model("Model_cadastro");
 
         $dados_usuario["form_open"] = form_open_multipart("Usuario/mudarFoto", 'class=""');

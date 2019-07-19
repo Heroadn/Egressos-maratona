@@ -25,7 +25,6 @@ class Timeline extends CI_Controller{
     }
 
     public function postagem(){
-
         $this->form_validation->set_rules('titulo', 'Titulo', array('required', 'min_length[5]', 'max_length[50]', 'regex_match[/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9,.!@#$% ]+$/]'));
         if ($this->form_validation->run() == FALSE) {
             $usuario = $this->session->userdata("usuario_logado");
@@ -46,7 +45,6 @@ class Timeline extends CI_Controller{
 
             $dados_usuario["username"] = $usuario["nome"];
 
-
             $idUsuario = $usuario["id_usuario"];
             $dados_usuario["file_name"] = $this->getCaminhoFoto($idUsuario);
             $dados_usuario["membro_desde"] = $this->Model_usuario->buscaAnoDeIngresso($idUsuario);
@@ -66,7 +64,6 @@ class Timeline extends CI_Controller{
 
             $posts+= $dados_usuario;
             $posts+= $data;
-
             $this->twig->display('usuario/timeline', $posts);
 
         }else{
