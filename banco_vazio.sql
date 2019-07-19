@@ -36,6 +36,7 @@ create table usuario(
     email VARCHAR(80) NOT NULL,
     senha char(64) NOT NULL,
     oauth VARCHAR(80),
+    Facebook VARCHAR(80),
     pergunta VARCHAR(200) NOT NULL,
 	resposta VARCHAR(200) NOT NULL,
     descricao VARCHAR(200) NOT NULL,
