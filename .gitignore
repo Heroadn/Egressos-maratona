@@ -10,6 +10,7 @@ application/logs/*
 !application/*/.htaccess
 application/config/config.php
 application/config/database.php
+application/config/email.php
 
 composer.lock
 
@@ -70,7 +71,3 @@ static/images/*
 /tests/tests/
 /tests/results/
 /static/images/users/*
-
-##Sensitive info -- move to config
-application/models/Model_usuario.php
-application/config/email.php
