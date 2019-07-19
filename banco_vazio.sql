@@ -42,6 +42,7 @@ create table usuario(
     descricao VARCHAR(200) NOT NULL,
     id_status INTEGER NOT NULL,
     ano_egresso INTEGER NOT NULL,
+    data_criacao DATE NOT NULL,
     nome_completo VARCHAR(100) NOT NULL,
     token VARCHAR(100) NOT NULL,
     id_turma INTEGER NOT NULL,
@@ -52,6 +53,7 @@ create table usuario(
 
 create table midia(
 	id_midia INTEGER PRIMARY KEY AUTO_INCREMENT,
+    file_ID INTEGER NOT NULL,
     file_name VARCHAR(80) NOT NULL,
     file_size INTEGER NOT NULL,
     data_insercao DATETIME NOT NULL,
