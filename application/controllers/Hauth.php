@@ -65,7 +65,6 @@ class Hauth extends CI_Controller {
      */
     public function endpoint()
     {
-        var_dump($config['hybridauth']);die();
         if (isset($_REQUEST['hauth_start']) || isset($_REQUEST['hauth_done']))
         {
             Hybrid_Endpoint::process();
