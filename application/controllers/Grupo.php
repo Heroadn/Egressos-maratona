@@ -73,6 +73,7 @@ class Grupo extends CI_Controller{
             $post = array(
                 "titulo" => $this->input->post("titulo"),
                 "descricao" => $this->input->post("conteudo"),
+                'data' => date("Y-m-d H:i:s"),
                 "id_status" => 1,
                 "id_usuario" => $usuario['id_usuario'],
                 "id_grupo" => $grupo['id_grupo']

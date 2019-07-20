@@ -638,15 +638,14 @@ class Model_usuario extends CI_Model{
 
     public function buscarPerfil($id) {
         $usuario = $this->db->query("select usuario.nome_completo, usuario.email, midia.file_name, curso.id_curso, usuario.id_turma, campus.id_campus, usuario.id_grupo, usuario.ano_egresso, usuario.facebook, usuario.descricao, usuario.linkedin, usuario.trabalho_atual, usuario.formacao_academica, curso.curso, campus.nome, turma.turma, grupo.nome
-from usuario, midia, midia_usuario, curso, turma, campus, grupo
-where usuario.id_grupo = grupo.id_grupo 
-and usuario.id_turma = turma.id_turma
-and turma.id_curso = curso.id_curso
-and curso.id_campus = campus.id_campus
-and midia.file_ID = midia_usuario.midia_file_ID
-and midia_usuario.usuario_id_usuario = usuario.id_usuario and id_usuario = $id")->result_array();
+        from usuario, midia, midia_usuario, curso, turma, campus, grupo
+        where usuario.id_grupo = grupo.id_grupo 
+        and usuario.id_turma = turma.id_turma
+        and turma.id_curso = curso.id_curso
+        and curso.id_campus = campus.id_campus
+        and midia.file_ID = midia_usuario.midia_file_ID
+        and midia_usuario.usuario_id_usuario = usuario.id_usuario and id_usuario = $id")->result_array();
         return $usuario[0];
-
     }
 
     public function buscaAnoDeIngresso($idUser){
