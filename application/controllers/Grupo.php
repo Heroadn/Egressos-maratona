@@ -63,6 +63,7 @@ class Grupo extends CI_Controller{
             );
             $posts += $dados_usuario;
             $posts += $data;
+
             $this->twig->display('grupo/inicio', $posts);
 
         }else{
@@ -93,7 +94,6 @@ class Grupo extends CI_Controller{
             $this->Model_timeline->publicacaoComImagens($file, $idPost);
 
             redirect('Grupo/');
-
         }
     }
 

@@ -90,6 +90,15 @@ create table midia_grupo(
     FOREIGN KEY (grupo_id_grupo) REFERENCES grupo(id_grupo)
 );
 
+create table midia_post(
+    id_midia_post INTEGER PRIMARY KEY AUTO_INCREMENT,
+    midia_file_ID INTEGER NOT NULL,
+    post_id_post INTEGER NOT NULL,
+    data_alteracao DATE NOT NULL,
+    FOREIGN KEY (midia_file_ID) REFERENCES midia(file_ID),
+    FOREIGN KEY (post_id_post)  REFERENCES post(id_post)
+);
+
 create table tipo_notificacao(
     id_tipo INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(80)
