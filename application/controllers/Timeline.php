@@ -70,6 +70,7 @@ class Timeline extends CI_Controller{
                 "titulo" => $this->input->post("titulo"),
                 "descricao" => $this->input->post("conteudo"),
                 "id_status" => 1,
+                'data' => date("Y-m-d H:i:s"),
                 "id_usuario" => $usuario['id_usuario']
             );
 

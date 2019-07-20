@@ -2,13 +2,11 @@
 
 class Model_postagem extends CI_Model
 {
-
     public function salva($post)
     {
         $this->db->insert("post", $post);
         return $this->db->insert_id();
     }
-
 
     public function buscaPosts($idGrupo, $qtdPosts=10){
         if($idGrupo == 0){
