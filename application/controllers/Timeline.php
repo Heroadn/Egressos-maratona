@@ -42,7 +42,6 @@ class Timeline extends CI_Controller{
             $dados_usuario["button_submit_ft"] = form_button(array("type" => "submit", "id" => "enviar-foto", "content" => "Enviar", "class" => "ui small green inverted button", "style" => "display:none;"));
             $dados_usuario["anchor_cancelar"] = anchor('Usuario/perfil','Cancelar',array("href" => "Usuario/perfil", "id" => "cancelar-foto", "class" => "ui small red inverted button", "style" => "display:none;"));
             $dados_usuario["form_close"] = form_close();
-
             $dados_usuario["username"] = $usuario["nome"];
 
             $idUsuario = $usuario["id_usuario"];
@@ -54,7 +53,6 @@ class Timeline extends CI_Controller{
             $dados_usuario["url_perfil"] = base_url("Usuario/perfil");
 
             $data["totalPosts"] = $this->getCountPost(0);
-
             $posts = $this->Model_timeline->gera_form("timeline/postagem");
 
             $posts["erros_validacao"] = array(
@@ -69,17 +67,14 @@ class Timeline extends CI_Controller{
         }else{
             $usuario = $this->session->userdata("usuario_logado");
             $post = array(
-
                 "titulo" => $this->input->post("titulo"),
                 "descricao" => $this->input->post("conteudo"),
                 "id_status" => 1,
                 "id_usuario" => $usuario['id_usuario']
-
             );
 
             $this->load->model("Model_postagem");
             $this->load->model("Model_timeline");
-
 
             $idPost = $this->Model_postagem->salva($post);
 
@@ -105,8 +100,6 @@ class Timeline extends CI_Controller{
 
 //            Temporario
         $usuario = $this->session->userdata("usuario_logado");
-
-
         $this->load->model("Model_usuario");
         $this->load->model("Model_timeline");
         $dado_postagem['membro_desde'] = $this->Model_usuario->buscaAnoDeIngresso($post['id_usuario']);
@@ -123,8 +116,7 @@ class Timeline extends CI_Controller{
         $post['comentarios'] = $this->Model_timeline->buscarComentario($idPost);
         $post+= $dado_postagem;
         $post+= $dados_usuario;
-        $this->twig->display('usuario/visualizarPost', $post);
-
+        $this->twig->display('usuario/visualizarPost', $post);  
     }
 
     public function contadorCurtidas(){

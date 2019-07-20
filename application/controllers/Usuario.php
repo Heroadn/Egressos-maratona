@@ -58,6 +58,7 @@ class Usuario extends CI_Controller
         $dados_usuario["num_amigos"] = $this->Model_usuario->countAmigos();
 
         $this->twig->display('usuario/perfil', $dados_usuario);
+
     }
 
     public function autenticar()

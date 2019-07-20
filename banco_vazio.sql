@@ -135,3 +135,4 @@ INSERT INTO campus(nome) VALUES ('Campus1'), ('ECampus2'), ('Campus3');
 INSERT INTO curso(id_campus, curso) VALUES (1, 'Curso1'), (2, 'Curso2'),
 (3, 'Curso3');
 INSERT INTO turma(id_curso, turma) VALUES (1, 'Turma1'), (2, 'Turma2'), (3, 'Turma3');
+INSERT INTO tipo_notificacao() VALUES ();
