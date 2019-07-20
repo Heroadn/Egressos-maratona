@@ -59,14 +59,13 @@ create table amigos(
     id_status INTEGER, 
     id_usuario1 INTEGER,
     id_usuario2 INTEGER,
+    data_aceitado DATE,
     FOREIGN KEY (id_usuario1) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_usuario2) REFERENCES usuario(id_usuario)
 );
 
-
 create table midia(
-	id_midia INTEGER PRIMARY KEY AUTO_INCREMENT,
-    file_ID INTEGER NOT NULL,
+    file_ID INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     file_name VARCHAR(80) NOT NULL,
     file_size INTEGER NOT NULL,
     data_insercao DATETIME NOT NULL,
@@ -78,7 +77,7 @@ create table midia_usuario(
 	data_alteracao DATETIME NOT NULL,
 	midia_file_ID INTEGER NOT NULL,
     usuario_id_usuario INTEGER NOT NULL,
-    FOREIGN KEY (midia_file_ID) REFERENCES midia(id_midia),
+    FOREIGN KEY (midia_file_ID) REFERENCES midia(file_ID),
     FOREIGN KEY (usuario_id_usuario) REFERENCES usuario(id_usuario)
 );
 
@@ -87,12 +86,13 @@ create table midia_grupo(
 	data_alteracao DATETIME NOT NULL,
 	midia_file_ID INTEGER NOT NULL,
     grupo_id_grupo INTEGER NOT NULL,
-    FOREIGN KEY (midia_file_ID) REFERENCES midia(id_midia),
+    FOREIGN KEY (midia_file_ID) REFERENCES midia(file_ID),
     FOREIGN KEY (grupo_id_grupo) REFERENCES grupo(id_grupo)
 );
 
 create table tipo_notificacao(
-    id_tipo INTEGER PRIMARY KEY AUTO_INCREMENT
+    id_tipo INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(80)
 );
 
 create table notificacao(
@@ -131,8 +131,18 @@ create table curtidas(
     FOREIGN KEY (id_user) REFERENCES usuario(id_usuario)
 );
 
+##CAMPUS, CURSO, TURMA
 INSERT INTO campus(nome) VALUES ('Campus1'), ('ECampus2'), ('Campus3');
 INSERT INTO curso(id_campus, curso) VALUES (1, 'Curso1'), (2, 'Curso2'),
 (3, 'Curso3');
 INSERT INTO turma(id_curso, turma) VALUES (1, 'Turma1'), (2, 'Turma2'), (3, 'Turma3');
+
+##TIPO DE NOTIFICAÇÔES
+INSERT INTO tipo_notificacao() VALUES ();
+INSERT INTO tipo_notificacao() VALUES ();
+INSERT INTO tipo_notificacao() VALUES ();
+INSERT INTO tipo_notificacao() VALUES ();
+INSERT INTO tipo_notificacao() VALUES ();
+INSERT INTO tipo_notificacao() VALUES ();
+INSERT INTO tipo_notificacao() VALUES ();
 INSERT INTO tipo_notificacao() VALUES ();

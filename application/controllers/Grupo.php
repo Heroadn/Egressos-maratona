@@ -63,7 +63,6 @@ class Grupo extends CI_Controller{
             );
             $posts += $dados_usuario;
             $posts += $data;
-
             $this->twig->display('grupo/inicio', $posts);
 
         }else{

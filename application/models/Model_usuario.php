@@ -370,9 +370,7 @@ class Model_usuario extends CI_Model{
     }
 
     public function verificaNomeCompleto($nome){
-
         $nome_separado = explode(' ', $nome);
-
         $numero_de_nomes = 0;
 
         foreach ($nome_separado as $value){
@@ -404,7 +402,6 @@ class Model_usuario extends CI_Model{
     }
 
     public function buscarNotificacoes(){
-
         $usuario = $this->session->userdata("usuario_logado")['id_usuario'];
 
         return($this->db->query("SELECT id_notificacao, texto_notificacao, tipo_notificacao_id_tipo, id_usuario_de, midia.file_ID, midia.file_name,  id_usuario_para, id_origem, notificacao.tipo_notificacao_id_tipo
