@@ -142,6 +142,7 @@ class PortalEgresso extends CI_Controller{
                 "resposta" => $resposta,
                 "id_status" => 2,
                 "descricao" => "...",
+                "data_criacao" => date("Y-m-d H:i:s"),
                 "id_turma" => $this->input->post("turma"),
                 "ano_egresso" => $this->input->post("ano"),
                 "token" => $token
