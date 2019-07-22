@@ -51,13 +51,13 @@
     $config['mailpath'] = "/usr/bin/sendmail";
     $config['smtp_crypto'] = 'tls';
     $config['protocol'] = "smtp";
-    $config['smtp_host'] = "domain.sufix";
-    $config['smtp_port'] = "port";
+    $config['smtp_host'] = "acid-software.net";
+    $config['smtp_port'] = "25";
     $config['mailtype'] = 'html';
     $config['charset']  = 'utf-8';
     $config['newline']  = "\r\n";
     $config['wordwrap'] = TRUE;
 
-    $config['smtp_user'] = 'user';
-    $config['smtp_pass'] = 'pass';
+    $config['smtp_user'] = 'hackthanos@acid-software.net';
+    $config['smtp_pass'] = 'k3h!Lq:is1G0>sUT!eExDEyM&?1pXbH8';
 ?>
