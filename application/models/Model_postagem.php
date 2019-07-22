@@ -125,8 +125,8 @@ class Model_postagem extends CI_Model
     public function cadastroMidia($array){
         $array['status_id_status'] = 1;
 
-        var_dump($array);
-        die();
+        //var_dump($array);
+        //die();
         $this->db->insert("midia", $array);
         return $this->db->insert_id();
     }
