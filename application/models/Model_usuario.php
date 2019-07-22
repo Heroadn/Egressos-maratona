@@ -228,6 +228,8 @@ class Model_usuario extends CI_Model{
         $usuario = $this->session->userdata("usuario_logado");
         $this->load->model("Model_postagem");
         $this->excluirFoto($usuario['id_usuario']);
+
+        die('<img src="'.$foto['file_name'].'">');
         $idMidia = $this->Model_postagem->cadastroMidia($foto);
         $usuario['file_name'] = $foto['file_name'];
 
