@@ -64,6 +64,18 @@ create table amigos(
     FOREIGN KEY (id_usuario2) REFERENCES usuario(id_usuario)
 );
 
+create table post(
+    id_post INTEGER PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(255),
+    titulo VARCHAR(80) NOT NULL,
+    data DATE NOT NULL,
+    id_status INTEGER,
+    id_usuario INTEGER,
+    id_grupo INTEGER,
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
+);
+
 create table midia(
     file_ID INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
     file_name VARCHAR(80) NOT NULL,
@@ -118,17 +130,63 @@ create table notificacao(
     FOREIGN KEY (id_usuario_para) REFERENCES usuario(id_usuario)
 );
 
-create table post(
-    id_post INTEGER PRIMARY KEY AUTO_INCREMENT,
-    descricao VARCHAR(255),
-    titulo VARCHAR(80) NOT NULL,
-    data DATE NOT NULL,
-    id_status INTEGER,
-    id_usuario INTEGER,
-    id_grupo INTEGER,
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
-    FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
+###################################
+# INÍCIO DAS TABELAS PARA O FORUM #
+###################################
+
+CREATE TABLE forum(
+	id_forum INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(200),
+    descricao TEXT,
+    id_criador INTEGER,
+    FOREIGN KEY(id_criador) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
+
+#tabela designada para administradores do fórum, que podem ser designados pelo criador
+CREATE TABLE adm_forum(
+	id_adm_forum INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_forum INTEGER,
+    id_usuario INTEGER,
+	FOREIGN KEY(id_forum) REFERENCES forum(id_forum) ON DELETE CASCADE,
+    FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
+);
+
+CREATE TABLE categoria(
+	id_categoria INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(200),
+    id_forum INTEGER,
+    FOREIGN KEY(id_forum) REFERENCES forum(id_forum) ON DELETE CASCADE
+);
+
+CREATE TABLE topico(
+	id_topico INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(200),
+    id_categoria INTEGER,
+    FOREIGN KEY(id_categoria) REFERENCES categoria(id_categoria) ON DELETE CASCADE
+);
+
+CREATE TABLE publicacao(
+	id_publicacao INTEGER PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(200),
+    conteudo TEXT,
+    id_topico INTEGER,
+    id_usuario INTEGER,
+    FOREIGN KEY(id_topico) REFERENCES topico(id_topico) ON DELETE CASCADE,
+    FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
+);
+
+CREATE TABLE comentario(
+	id_comentario INTEGER PRIMARY KEY AUTO_INCREMENT,
+    conteudo TEXT,
+    id_publicacao INTEGER,
+    id_usuario INTEGER,
+    FOREIGN KEY(id_publicacao) REFERENCES publicacao(id_publicacao) ON DELETE CASCADE,
+    FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
+);
+    
+################################
+# FIM DAS TABELAS PARA O FORUM #
+################################
 
 create table curtidas(
     id_curtidas INTEGER PRIMARY KEY AUTO_INCREMENT,
