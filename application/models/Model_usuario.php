@@ -234,7 +234,6 @@ class Model_usuario extends CI_Model{
         $usuario['file_name'] = $foto['file_name'];
 
         $this->cadastroMidiaUsuario($usuario['id_usuario'], $idMidia);
-
         $this->session->unset_userdata("usuario_logado");
         $this->session->set_userdata("usuario_logado", $usuario);
     }
