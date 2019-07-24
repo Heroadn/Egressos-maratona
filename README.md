@@ -1,4 +1,21 @@
-<a href='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon'><img src='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon'></a>
+<table>
+<thead>
+<tr>
+<th align="left">Branch</th>
+<th align="center">CI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">master</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">dev</td>
+<td align="center"><a href='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon'><img src='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon'></a></td>
+</tr>
+</tbody>
+</table>
 
 **EGRESSOS IFC - Sistema de Acompanhamento e Interação de Egressos**
 
