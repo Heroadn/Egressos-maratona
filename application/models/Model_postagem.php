@@ -2,18 +2,13 @@
 
 class Model_postagem extends CI_Model
 {
-
     public function salva($post)
     {
-
         $this->db->insert("post", $post);
         return $this->db->insert_id();
-
     }
 
-
     public function buscaPosts($idGrupo, $qtdPosts=10){
-
         if($idGrupo == 0){
             return ($this->db->query("SELECT nome, ultimo_nome, id_post, post.descricao, titulo, data, post.id_usuario, post.id_status, midia.file_name FROM post, usuario, midia, midia_usuario WHERE post.id_usuario = usuario.id_usuario AND midia_usuario.usuario_id_usuario = usuario.id_usuario AND post.id_status = 1 AND post.id_grupo IS NULL ORDER BY post.data DESC LIMIT $qtdPosts")->result_array());
         }

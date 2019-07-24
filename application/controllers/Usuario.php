@@ -20,7 +20,6 @@ class Usuario extends CI_Controller
 
     public function perfil()
     {
-
         $usuario = $this->session->userdata("usuario_logado");
         $usuario_oauth = $this->session->userdata("usuario_oauth");
         $this->load->model("Model_usuario");
@@ -57,6 +56,7 @@ class Usuario extends CI_Controller
         $dados_usuario["amigos"] = $this->Model_usuario->buscarAmigos();
         $dados_usuario["url_amigos"] = base_url("Usuario/perfilVisita");
         $dados_usuario["num_amigos"] = $this->Model_usuario->countAmigos();
+
         $this->twig->display('usuario/perfil', $dados_usuario);
 
     }
@@ -310,15 +310,14 @@ class Usuario extends CI_Controller
         $id = $this->input->post('id_usuario');
         $usuario = $this->session->userdata("usuario_logado");
 
-        if ($id == $usuario['id_usuario']) {
+        #Caso o id requisitado seja igual ao do usuario, ou seja nulo
+        if ($id == $usuario['id_usuario'] || !isset($id)) {
             redirect('Usuario/perfil');
         } else {
-
             $this->load->model("Model_usuario");
             $this->load->model("Model_cadastro");
             $usuario_id_curso = $this->Model_usuario->getIdCursoUsuario($usuario['id_usuario']);
             $usuario_id_campus = $this->Model_usuario->getIdCampusUsuario($usuario_id_curso);
-
 
             $perfilVisitado = $this->Model_usuario->buscarPerfil($id);
             $amigos = $this->Model_usuario->buscarAmigosNome($perfilVisitado['nome_completo']);

@@ -72,22 +72,6 @@ class Model_usuario extends CI_Model{
     public function enviarEmail($from, $fromName, $to, $toName, $subject, $message, $reply = null, $replyName = null){
 
         $this->load->library('email');
-        $config = array();
-        $config['useragent'] = "CodeIgniter";
-        $config['mailpath'] = "/usr/bin/sendmail";
-        $config['smtp_crypto'] = 'tls';
-        $config['protocol'] = "smtp";
-        $config['smtp_host'] = "desenvolvedor.tech";
-        $config['smtp_port'] = "587";
-        $config['mailtype'] = 'html';
-        $config['charset']  = 'utf-8';
-        $config['newline']  = "\r\n";
-        $config['wordwrap'] = TRUE;
-
-        $config['smtp_user'] = 'hackathon@desenvolvedor.tech';
-        $config['smtp_pass'] = 'hackathanos40028922';
-
-        $this->email->initialize($config);
         $this->email->from($from, $fromName);
         $this->email->to($to, $toName);
 
@@ -99,7 +83,8 @@ class Model_usuario extends CI_Model{
         $this->email->message($message);
 
         $this->email->send();
-
+        #echo $this->email->print_debugger();
+        #die('<br>Verifique o modelo do usuario<br>');
     }
 
     public function verificaToken($token){
@@ -243,11 +228,12 @@ class Model_usuario extends CI_Model{
         $usuario = $this->session->userdata("usuario_logado");
         $this->load->model("Model_postagem");
         $this->excluirFoto($usuario['id_usuario']);
+
+        //die('<img src="'.$foto['file_name'].'">');
         $idMidia = $this->Model_postagem->cadastroMidia($foto);
         $usuario['file_name'] = $foto['file_name'];
 
         $this->cadastroMidiaUsuario($usuario['id_usuario'], $idMidia);
-
         $this->session->unset_userdata("usuario_logado");
         $this->session->set_userdata("usuario_logado", $usuario);
     }
@@ -385,9 +371,7 @@ class Model_usuario extends CI_Model{
     }
 
     public function verificaNomeCompleto($nome){
-
         $nome_separado = explode(' ', $nome);
-
         $numero_de_nomes = 0;
 
         foreach ($nome_separado as $value){
@@ -419,7 +403,6 @@ class Model_usuario extends CI_Model{
     }
 
     public function buscarNotificacoes(){
-
         $usuario = $this->session->userdata("usuario_logado")['id_usuario'];
 
         return($this->db->query("SELECT id_notificacao, texto_notificacao, tipo_notificacao_id_tipo, id_usuario_de, midia.file_ID, midia.file_name,  id_usuario_para, id_origem, notificacao.tipo_notificacao_id_tipo
@@ -656,15 +639,14 @@ class Model_usuario extends CI_Model{
 
     public function buscarPerfil($id) {
         $usuario = $this->db->query("select usuario.nome_completo, usuario.email, midia.file_name, curso.id_curso, usuario.id_turma, campus.id_campus, usuario.id_grupo, usuario.ano_egresso, usuario.facebook, usuario.descricao, usuario.linkedin, usuario.trabalho_atual, usuario.formacao_academica, curso.curso, campus.nome, turma.turma, grupo.nome
-from usuario, midia, midia_usuario, curso, turma, campus, grupo
-where usuario.id_grupo = grupo.id_grupo 
-and usuario.id_turma = turma.id_turma
-and turma.id_curso = curso.id_curso
-and curso.id_campus = campus.id_campus
-and midia.file_ID = midia_usuario.midia_file_ID
-and midia_usuario.usuario_id_usuario = usuario.id_usuario and id_usuario = $id")->result_array();
+        from usuario, midia, midia_usuario, curso, turma, campus, grupo
+        where usuario.id_grupo = grupo.id_grupo 
+        and usuario.id_turma = turma.id_turma
+        and turma.id_curso = curso.id_curso
+        and curso.id_campus = campus.id_campus
+        and midia.file_ID = midia_usuario.midia_file_ID
+        and midia_usuario.usuario_id_usuario = usuario.id_usuario and id_usuario = $id")->result_array();
         return $usuario[0];
-
     }
 
     public function buscaAnoDeIngresso($idUser){
@@ -678,5 +660,6 @@ and midia_usuario.usuario_id_usuario = usuario.id_usuario and id_usuario = $id")
     public function getIdCampusUsuario($id_curso){
         $id = $id_curso['id_curso'];
         return ($this->db->query("select curso.id_campus from curso where curso.id_curso = $id")->row_array());
-    }
+    } 
+    
 }

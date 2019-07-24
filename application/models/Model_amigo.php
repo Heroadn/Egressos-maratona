@@ -6,7 +6,7 @@ class Model_amigo extends CI_Model{
         $this->db->insert("amigos", $solicitacao);
         $row_array = $this->db->where("id_usuario1", $solicitacao['id_usuario1'])
                               ->where("id_usuario2", $solicitacao['id_usuario2'])
-                              ->where("id_status", $solicitacao['id_status'])
+                              ->where("id_status",   $solicitacao['id_status'])
                               ->select("id_amigos")
                               ->get("amigos")->row_array();
 
