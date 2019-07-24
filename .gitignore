@@ -1,5 +1,4 @@
 .DS_Store
-.DS_Store
 
 application/cache/*
 !application/cache/index.html
@@ -10,43 +9,6 @@ application/logs/*
 !application/*/.htaccess
 application/config/config.php
 application/config/database.php
-application/config/email.php
-
-composer.lock
-
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
-vendor/*
-
-static/images/*
-
-# IDE Files
-#-------------------------
-/nbproject/
-.idea/*
-
-## Sublime Text cache files
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
-*.sublime-workspace
-*.sublime-project
-/tests/tests/
-/tests/results/
-/static/images/users/*
-
-application/cache/*
-!application/cache/index.html
-
-application/logs/*
-!application/logs/index.html
-
-!application/*/.htaccess
-application/config/config.php
-application/config/database.php
-application/config/email.php
 
 composer.lock
 

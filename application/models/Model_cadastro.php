@@ -46,7 +46,7 @@ class Model_cadastro extends CI_Model{
 
         $campus = $this->pegarCampus();
 
-        foreach($campus ->result() as $item){
+        foreach($campus -> result() as $item){
             $options .= "<option value='{$item->id_campus}'>{$item->nome}</option>";
         }
 
@@ -74,6 +74,7 @@ class Model_cadastro extends CI_Model{
     }
 
     public function pegarTurma($id_curso = null){
+
         return $this->db
             ->where('id_curso', $id_curso)
             ->order_by('turma')

@@ -7,6 +7,3 @@ aplication/controllers/PortalEgresso.php
 aplication/Model/Model_usuario.php
 	- Alterar #seuEmail
 	- Alterar #senhaDoEmail
-	
-aplication/Config/email.php
-	- Adicione suas configurações de SMTP
