@@ -1,4 +1,4 @@
-<a href='http://acid-software.net:8080/job/Hackthon/'><img src='http://acid-software.net:8080/job/Hackthon/badge/icon'></a>
+<a href='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon'><img src='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon'></a>
 
 **EGRESSOS IFC - Sistema de Acompanhamento e Interação de Egressos**
 
