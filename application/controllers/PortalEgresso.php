@@ -285,7 +285,7 @@ class PortalEgresso extends CI_Controller{
             $this->Model_usuario->salvarCodigo($email, $codigo_bcrypt);
             $assunto = "Email para recuperação de conta - Portal Egressos";
             $mensagem = "Para recuperar sua conta digite este código {unwrap}$codigo{/unwrap} no campo do formulário.";
-            $this->Model_usuario->enviarEmail("#seuEmail", "Portal Egressos", $email, $nome, $assunto, $mensagem);
+            $this->Model_usuario->enviarEmail("hackathon@desenvolvedor.tech", "Portal Egressos", $email, $nome, $assunto, $mensagem);
             redirect("PortalEgresso/recuperarSenhaPasso3");
         }
         elseif($verificar_email == 2){
