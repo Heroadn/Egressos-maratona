@@ -1,4 +1,4 @@
-[Build Status](http://acid-software.net:8080/job/Hackthon/badge/icon) "http://acid-software.net:8080/job/Hackthon/")
+<a href='http://acid-software.net:8080/job/Hackthon/'><img src='http://acid-software.net:8080/job/Hackthon/badge/icon'></a>
 
 **EGRESSOS IFC - Sistema de Acompanhamento e Interação de Egressos**
 
