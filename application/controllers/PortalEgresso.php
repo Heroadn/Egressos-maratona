@@ -77,6 +77,7 @@ class PortalEgresso extends CI_Controller{
 
         if ($this->form_validation->run() == FALSE)
         {
+
             $dados_campus = $this->Model_cadastro->selectCampus();
             $dados_cursos = '';
             $dados_turmas = '';
@@ -142,7 +143,6 @@ class PortalEgresso extends CI_Controller{
                 "resposta" => $resposta,
                 "id_status" => 2,
                 "descricao" => "...",
-                "data_criacao" => date("Y-m-d H:i:s"),
                 "id_turma" => $this->input->post("turma"),
                 "ano_egresso" => $this->input->post("ano"),
                 "token" => $token
@@ -151,7 +151,7 @@ class PortalEgresso extends CI_Controller{
 
             $assunto = "Email de Verificação da Conta de: " . $usuario["nome"] . " - Portal Egressos";
             $mensagem = "Para ativar sua conta, clique no link a seguir:{unwrap}".base_url()."/Usuario/validarEmail?token=" . $token . "{/unwrap}";
-            $this->Model_usuario->enviarEmail("hackthanos@acid-software.net", "Portal Egressos", $usuario['email'], $usuario['nome'], $assunto, $mensagem);
+            $this->Model_usuario->enviarEmail("hackathon@desenvolvedor.tech", "Portal Egressos", $usuario['email'], $usuario['nome'], $assunto, $mensagem);
 
             $form["button_login"] = anchor("PortalEgresso", "<i class=\"sign out alternate ui icon\"></i>Login</a>", 'class="color-a-brown"');
             $form["usuario_logado"] = $this->session->userdata("usuario_logado");
