@@ -12,7 +12,7 @@
 </tr>
 <tr>
 <td align="left">dev</td>
-<td align="center"><a href='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon'><img src='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon'></a></td>
+<td align="center"><a href='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon--Dev'><img src='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon--Dev'></a></td>
 </tr>
 </tbody>
 </table>
