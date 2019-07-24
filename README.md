@@ -1,3 +1,5 @@
+[Build Status](http://acid-software.net:8080/job/Hackthon/badge/icon) "http://acid-software.net:8080/job/Hackthon/")
+
 **EGRESSOS IFC - Sistema de Acompanhamento e Interação de Egressos**
 
     O presente projeto de tem por objetivo o desenvolvimento de uma plataforma para
