@@ -24,7 +24,6 @@ class Grupo extends CI_Controller{
     }
 
     public function postagemGrupo(){
-
         $this->form_validation->set_rules('titulo', 'Titulo', array('required', 'min_length[5]', 'max_length[50]', 'regex_match[/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9,.!@#$% ]+$/]'));
         $this->form_validation->set_rules('conteudo', 'Conteudo', array('required', 'min_length[10]', 'max_length[500]')); #liberado caracteres especiais para teste
 
@@ -62,12 +61,8 @@ class Grupo extends CI_Controller{
                 "erros_titulo" => form_error('titulo'),
                 "erros_conteudo" => form_error('conteudo')
             );
-
-
             $posts += $dados_usuario;
             $posts += $data;
-
-
 
             $this->twig->display('grupo/inicio', $posts);
 
@@ -79,6 +74,7 @@ class Grupo extends CI_Controller{
             $post = array(
                 "titulo" => $this->input->post("titulo"),
                 "descricao" => $this->input->post("conteudo"),
+                'data' => date("Y-m-d H:i:s"),
                 "id_status" => 1,
                 "id_usuario" => $usuario['id_usuario'],
                 "id_grupo" => $grupo['id_grupo']
@@ -98,7 +94,6 @@ class Grupo extends CI_Controller{
             $this->Model_timeline->publicacaoComImagens($file, $idPost);
 
             redirect('Grupo/');
-
         }
     }
 
