@@ -8,7 +8,7 @@
 <tbody>
 <tr>
 <td align="left">master</td>
-<td align="center"></td>
+<td align="center"><a href='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon--Master'><img src='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon--Master'></a></td>
 </tr>
 <tr>
 <td align="left">dev</td>
