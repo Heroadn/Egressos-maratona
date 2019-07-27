@@ -1,0 +1,40 @@
+{% extends "base.twig" %}
+
+{% block title %}Ver fórum{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+    <span class="section">Forum</span>
+    <i class="right chevron icon divider"></i>
+    <span class="section">Ver</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile twelve wide tablet ten wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile twelve wide tablet eight wide computer centered column{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block content %}
+    <div class="ui segment">
+        <div class="row">
+            <h2 class="color-h-green">{{ forum.nome }}</h2>
+            <p>Descrição: {{ forum.descricao }}</p>
+        </div>
+        <br>
+        <div class="row">
+            <a href="/Forum/cadastrar_categoria/{{ forum.id_forum }}"><button>Cadastrar categoria</button></a>
+            <h2 class="color-h-green">Categorias</h2>
+            {% for categoria in categorias %}
+            <h4>{{categoria.nome}}</h4>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
