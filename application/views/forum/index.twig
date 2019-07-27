@@ -1,0 +1,39 @@
+{% extends "base.twig" %}
+
+{% block title %}Lista de fóruns{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+    <span class="section">Forum</span>
+    <i class="right chevron icon divider"></i>
+    <span class="section">Lista</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile twelve wide tablet ten wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile twelve wide tablet eight wide computer centered column{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block content %}
+    <div class="ui segment">
+        <div class="row">
+            <h2 class="color-h-green">Lista de fóruns</h2>
+            <div class="ui segment">
+                <div class="row">
+                    {% for forum in lista %}
+                    <div class="field">
+                        <a href="/Forum/ver/{{ forum.id_forum }}">{{ forum.nome }}</a>
+                    </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
