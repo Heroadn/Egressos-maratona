@@ -56,7 +56,7 @@ class Chat extends CI_Controller
             $card = $this->Model_conversar->build($idMensagem);
 
             
-            $ch = curl_init('http://localhost:8081');
+            $ch = curl_init('http://socket.acid-software.net/');
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
             $jsonData = json_encode([
                 'card' => $card

@@ -32,8 +32,8 @@ var server = http.createServer(function(request,response) {
 		return;
 	}
 });
-server.listen(3000);
-console.log('Server Listening port:'+'3000');
+server.listen(8081);
+console.log('Server Listening port:'+'8081');
 
 /* Requests */
 var websocketServer = new WebsocketServer({
