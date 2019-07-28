@@ -9,7 +9,7 @@ class Chat extends CI_Controller
         $this->twig->addGlobal('usuario_logado', $usuario);
 
         if ($usuario == NULL){
-            //redirect('PortalEgresso');
+            redirect('PortalEgresso');
         }
     }
 
