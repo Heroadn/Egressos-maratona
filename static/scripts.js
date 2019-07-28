@@ -356,19 +356,45 @@ function salvarMensagem(){
     }), "json";
 }
 
+function atualizarMensagens(){
+    let id_grupo = $('#id_grupo').text();
+    if(id_grupo === ''){
+        id_grupo = 0;
+    }
+
+    $.ajax({
+        url:urlComp()+"fetch",
+        method:"POST",
+        data:{limit:5, start:0, id_grupo:id_grupo},
+        cache: false,
+        success:function(data)
+        {
+            if(data === '')
+            {
+                $('.mensagens').append('<h4 class="ui header center aligned">Não foram encotrados mais resultados</h4>');
+                action = 'inactive';
+            }
+            else
+            {
+                $('.mensagens').append(data);
+                action = 'active';
+            }
+        }
+    }), "json";
+}
+
+/* OLD CHAT SYSTEM
 function atualizarMensagens() {
     let idMensagem = pegarLastIdMensagem() == '' ? 0 : pegarLastIdMensagem();
 
     $.post(urlComp()+'atualizarMensagens', {
         idMensagem : idMensagem
     }, function (data) {
-        /*Getting group id*/
         let id_grupo = $('#id_grupo').text();
         if(id_grupo === ''){
             id_grupo = 0;
         }
 
-        /*Loading mensagens*/
         $.ajax({
             url:urlComp()+"fetch",
             method:"POST",
@@ -387,9 +413,8 @@ function atualizarMensagens() {
                 }
             }
         }); 
-        /*END*/
     }), "json";
-}
+}*/
 
 function minhascurtidas() {
     $.post(urlComp()+'minhasCurtidas',{
@@ -434,7 +459,7 @@ function atualiza() {
 
 function atualizarChat() {
     atualizarMensagens();
-    setTimeout('atualizarChat()',1500);
+    //setTimeout('atualizarChat()',1500);
 }
 
 ////END CURTIDAS

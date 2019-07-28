@@ -37,11 +37,57 @@
         <br>
         <div class="ui container">
             <span class="hidden" id="qtd_bd">{{ totalPosts|raw }}</span>
-            <div class="ui segment mensagens">
+            <div class="ui segment">
                 <h3 class="ui dividing header">{{ qtd|raw }} Chat</h3>
-                {# Posts #}
+                <div class="mensagens"></div>
             </div>
         </div>
     </div>
     {#</div>#}
+
+    <script>
+        //Mensagem
+        var messageInput = document.getElementById("conteudo");
+
+        /*Se o usuario pressionar enter então a mensagem é enviada*/
+        function handleKeyUp(e) {
+            if (e.keyCode === 13) {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            var message = messageInput.value.trim();
+
+            if (!message)
+                return alert("Please write a message");
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/chat/conversar/", true);
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            ajax.send("conteudo=" + message);
+            messageInput.value = "";
+        }
+
+        /* Gerenciando websocket*/
+        window.WebSocket = window.WebSocket || window.MozWebSocket;
+        var connection = new WebSocket('ws://localhost:8081');
+
+
+        connection.onopen = function () {
+            //LOADING
+        };
+
+        connection.onerror = function (error) {
+            connectingSpan.innerHTML = "Error occured: " +error;
+            console.log(error);
+        };
+
+        connection.onmessage = function (message) {
+            var data = JSON.parse(message.data);
+            console.log("BLODY LOG: ");
+            console.log(data);
+            $('.mensagens').prepend(data.card);
+        }
+    </script>
 {% endblock %}

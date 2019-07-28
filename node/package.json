@@ -1,0 +1,18 @@
+{
+  "name": "egressos-maratona",
+  "version": "1.0.0",
+  "description": "<table> <thead> <tr> <th align=\"left\">Branch</th> <th align=\"center\">CI</th> </tr> </thead> <tbody> <tr> <td align=\"left\">master</td> <td align=\"center\"><a href='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon--Master'><img src='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon--Master'></a></td> </tr> <tr> <td align=\"left\">dev</td> <td align=\"center\"><a href='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon--Dev'><img src='https://jenkins.acid-software.net/buildStatus/icon?job=Hackthon--Dev'></a></td> </tr> </tbody> </table>",
+  "main": "server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.fabricadesoftware.ifc.edu.br/Heroadn/egressos-maratona.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

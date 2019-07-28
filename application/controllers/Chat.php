@@ -20,7 +20,7 @@ class Chat extends CI_Controller
     public function conversar(){
         $this->form_validation->set_rules('conteudo','Mensagem', 'required');
 
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->input->post("conteudo") == FALSE) {
             $usuario = $this->session->userdata("usuario_logado");
             $this->load->model("Model_usuario");
             $this->load->model("Model_cadastro");
@@ -35,16 +35,44 @@ class Chat extends CI_Controller
                 "erros_conteudo" => form_error('conteudo')
             );
 
+            /*TEMPORARIO*/
             $this->twig->display('chat/conversar', $mensagens);
+        }else{
+            $usuario = $this->session->userdata("usuario_logado");
+
+            $mensagem = array(
+                "conteudo" => $this->input->post("conteudo"),
+                'data' => date("Y-m-d H:i:s"),
+                "id_usuario" => $usuario['id_usuario'],
+                "id_grupo" =>   $usuario['id_grupo']
+            );
+
+            //Salvando mensagem
+            $this->load->model("Model_mensagem");
+            $idMensagem = $this->Model_mensagem->salva($mensagem);
+
+            //Carregando mensagem salvar para adicionar na tela de usuario
+            $this->load->model("Model_conversar");
+            $card = $this->Model_conversar->build($idMensagem);
+
+            
+            $ch = curl_init('http://localhost:8081');
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            $jsonData = json_encode([
+                'card' => $card
+            ]);
+            $query = http_build_query(['data' => $jsonData]);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
         }
     }
 
     public function fetch(){
-        $this->load->model('Model_grupo');
+        $usuario = $this->session->userdata("usuario_logado");
         $this->load->model('Model_conversar');
-
-        $grupo = $this->Model_grupo->buscaGrupo();
-        $mensagem = $this->Model_conversar->fetch($grupo['id_grupo']);
+        $mensagem = $this->Model_conversar->fetch($usuario['id_grupo'],10,0 );
         echo $mensagem;
     }
 
@@ -59,7 +87,22 @@ class Chat extends CI_Controller
         );
 
         $this->load->model("Model_mensagem");
-        $idMensagem = $this->Model_mensagem ->salva($mensagem);
+        $idMensagem = $this->Model_mensagem->salva($mensagem);
+
+        // Send the HTTP request to the websockets server
+        $ch = curl_init('http://localhost:3000');
+        // It's POST
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        // we send JSON encoded data to the client
+        $jsonData = json_encode([
+            'nome' => 'Usuario:'+$usuario['id_usuario'],
+            'conteudo' => $message
+        ]);
+        $query = http_build_query(['data' => $jsonData]);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
     }
 
 }
