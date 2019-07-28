@@ -1,0 +1,47 @@
+{% extends "base.twig" %}
+
+{% block title %}Timeline - {{ nome }}{% endblock %}
+
+{% block body_class %}{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+        <span class="section">Timeline</span>
+        <i class="right chevron icon divider"></i>
+        <span class="section">{{ nome }}</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile four wide tablet three wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile eight wide tablet seven wide computer centered column{% endblock %}
+
+{% block right_class %}sixteen wide four four wide tablet four wide computer centered column{% endblock %}
+
+{% block left_content %}
+    <div class="row">
+        {% include "usuario/conteudoEsquerda.twig" %}
+        {% include 'usuario/menu_principal.twig' %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% include 'chat/geradorChat.twig' %}
+        <br>
+        <div class="ui container">
+            <span class="hidden" id="qtd_bd">{{ totalPosts|raw }}</span>
+            <div class="ui segment mensagens">
+                <h3 class="ui dividing header">{{ qtd|raw }} Chat</h3>
+                {# Posts #}
+            </div>
+        </div>
+    </div>
+    {#</div>#}
+{% endblock %}

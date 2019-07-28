@@ -1,0 +1,43 @@
+<div class="active content">
+    {{ form_open|raw }}
+
+    <h3 class="ui dividing header">Escreva sua Mensagem</h3>
+
+    <div class="field">
+        {% if (erros_validacao['erros_titulo']) %}
+
+            {{ erros_validacao['erros_titulo']|raw }}
+
+        {% endif %}
+
+    </div>
+    <div class="field">
+
+        <div class="ui small blue message">Conteudo: Minimo 10 e Maximo 500 caracteres!(Caracteres especiais ainda não permitidos)
+            <i class="close icon blue"></i>
+        </div>
+
+        {{ label_conteudo|raw }}
+        {{ input_conteudo|raw }}
+
+        {% if (erros_validacao['erros_conteudo']) %}
+
+            {{ erros_validacao['erros_conteudo']|raw }}
+
+        {% endif %}
+
+    </div>
+    <div class="ui grid comen">
+        <div class="eight wide column comen">
+            {{ label_foto|raw }}
+            {{ input_upload|raw }}
+        </div>
+        <div class="eight wide column comen">
+            {{ button_confirm|raw }}
+        </div>
+        <div class="sixteen wide column" id="imagens-carregadas">
+        </div>
+    </div>
+</div>
+
+{{ form_close|raw }}

@@ -66,6 +66,10 @@ $(document).ready(function () {
         atualiza();
     }
 
+    if(controlador === 'Chat' || controlador === 'chat'){
+        atualizarChat();
+    }
+
     $(window).scrollTop(0);
     let limit = 10;
     let action = 'inactive';
@@ -100,6 +104,7 @@ $(document).ready(function () {
             id_grupo = 0;
         }
 
+        /*Loading posts*/
         $.ajax({
             url:urlComp()+"fetch",
             method:"POST",
@@ -321,6 +326,10 @@ function pegarid() {
     return arrayIdsPost;
 }
 
+function pegarLastIdMensagem() {
+    return $('.id_mensagem').last().text();
+}
+
 function countCurtidas() {
     let idsPost = pegarid();
     $.post(urlComp()+'contadorCurtidas', {
@@ -329,6 +338,56 @@ function countCurtidas() {
         $('.curtidas').each(function () {
             $(this).text(data[$(this).attr("id")]);
         });
+    }), "json";
+}
+
+function salvarMensagem(){
+    var conteudo = $("#conteudo").val();
+
+    $.post(urlComp()+'salvar', {
+        conteudo:conteudo
+    }, function (data) {
+        $.ajax({
+            url:urlComp()+"salvar",
+            method:"POST",
+            data:{ conteudo:conteudo },
+            cache: false
+        }); 
+    }), "json";
+}
+
+function atualizarMensagens() {
+    let idMensagem = pegarLastIdMensagem() == '' ? 0 : pegarLastIdMensagem();
+
+    $.post(urlComp()+'atualizarMensagens', {
+        idMensagem : idMensagem
+    }, function (data) {
+        /*Getting group id*/
+        let id_grupo = $('#id_grupo').text();
+        if(id_grupo === ''){
+            id_grupo = 0;
+        }
+
+        /*Loading mensagens*/
+        $.ajax({
+            url:urlComp()+"fetch",
+            method:"POST",
+            data:{limit:5, start:0, id_grupo:id_grupo},
+            cache: false,
+            success:function(data)
+            {
+                if(data === '')
+                {   
+                    action = 'inactive';
+                }
+                else
+                {   
+                    $('.mensagens').html(data);
+                    action = 'active';
+                }
+            }
+        }); 
+        /*END*/
     }), "json";
 }
 
@@ -372,6 +431,12 @@ function atualiza() {
         countCurtidas();
         setTimeout('atualiza()',1500);
 }
+
+function atualizarChat() {
+    atualizarMensagens();
+    setTimeout('atualizarChat()',1500);
+}
+
 ////END CURTIDAS
 
 

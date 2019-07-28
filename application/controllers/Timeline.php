@@ -6,8 +6,8 @@
  * Time: 14:25
  */
 
-class Timeline extends CI_Controller{
-
+class Timeline extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();
