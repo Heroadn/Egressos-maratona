@@ -90,7 +90,7 @@ class Chat extends CI_Controller
         $idMensagem = $this->Model_mensagem->salva($mensagem);
 
         // Send the HTTP request to the websockets server
-        $ch = curl_init('http://localhost:3000');
+        $ch = curl_init('https://socket.acid-software.net');
         // It's POST
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         // we send JSON encoded data to the client

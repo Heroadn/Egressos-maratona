@@ -68,10 +68,10 @@
             ajax.send("conteudo=" + message);
             messageInput.value = "";
         }
-
+ 
         /* Gerenciando websocket*/
         window.WebSocket = window.WebSocket || window.MozWebSocket;
-        var connection = new WebSocket('ws://socket.acid-software.net/');
+        var connection = new WebSocket('wss://socket.acid-software.net:443');
 
 
         connection.onopen = function () {
