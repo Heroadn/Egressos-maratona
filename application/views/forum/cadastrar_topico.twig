@@ -1,6 +1,6 @@
 {% extends "base.twig" %}
 
-{% block title %}Cadastrar fórum{% endblock %}
+{% block title %}Cadastrar tópico{% endblock %}
 
 {% block header %}{% include "base/header.twig" %}{% endblock %}
 
@@ -8,7 +8,7 @@
     <div class="ui segment mini breadcrumb">
     <span class="section">Forum</span>
     <i class="right chevron icon divider"></i>
-    <span class="section">Cadastrar categoria</span>
+    <span class="section">Cadastrar tópico</span>
     </div>
 {% endblock %}
 
@@ -27,7 +27,7 @@
         <div class="row">
             {{ form_open|raw }}
             <input type="hidden" name="id_forum" value="{{ id_forum|raw }}">
-            <h2 class="color-h-green">Cadastrar categoria </h2>
+            <h2 class="color-h-green">Cadastrar tópico </h2>
             <div class="ui segment">
                 <div class="row">
                     <div class="field">
