@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block title %}Cadastrar publicação{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+    <span class="section">Forum</span>
+    <i class="right chevron icon divider"></i>
+    <span class="section">Cadastrar publicação</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile twelve wide tablet ten wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile twelve wide tablet eight wide computer centered column{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block content %}
+    <div class="ui segment">
+        <div class="row">
+            {% include 'forum/geradorPub.twig' %}
+        </div>
+    </div>
+{% endblock %}

@@ -196,6 +196,65 @@ create table midia_post(
     FOREIGN KEY (post_id_post)  REFERENCES post(id_post)
 );
 
+###################################
+#### INICIO DAS TABELAS PARA O FORUM ########
+###################################
+
+CREATE TABLE forum(
+	id_forum INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(200),
+    descricao TEXT,
+    id_criador INTEGER,
+    FOREIGN KEY(id_criador) REFERENCES usuario(id_usuario) ON DELETE CASCADE
+);
+
+#tabela designada para administradores do fórum, que podem ser designados pelo criador
+CREATE TABLE adm_forum(
+	id_adm_forum INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_forum INTEGER,
+    id_usuario INTEGER,
+	FOREIGN KEY(id_forum) REFERENCES forum(id_forum) ON DELETE CASCADE,
+    FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
+);
+
+CREATE TABLE categoria(
+	id_categoria INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(200),
+    id_forum INTEGER,
+    FOREIGN KEY(id_forum) REFERENCES forum(id_forum) ON DELETE CASCADE
+);
+
+CREATE TABLE topico(
+	id_topico INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(200),
+    id_categoria INTEGER,
+    FOREIGN KEY(id_categoria) REFERENCES categoria(id_categoria) ON DELETE CASCADE
+);
+
+CREATE TABLE publicacao(
+	id_publicacao INTEGER PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(200),
+    conteudo TEXT,
+    data_publicacao DATETIME, 
+    id_topico INTEGER,
+    id_usuario INTEGER,
+    FOREIGN KEY(id_topico) REFERENCES topico(id_topico) ON DELETE CASCADE,
+    FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
+);
+
+CREATE TABLE comentario(
+	id_comentario INTEGER PRIMARY KEY AUTO_INCREMENT,
+    conteudo TEXT,
+    id_publicacao INTEGER,
+    id_usuario INTEGER,
+    FOREIGN KEY(id_publicacao) REFERENCES publicacao(id_publicacao) ON DELETE CASCADE,
+    FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
+);
+
+################################
+##### FIM DAS TABELAS PARA O FORUM ######
+################################
+
 -- -----------------------------------------------------
 -- mensagen
 -- -----------------------------------------------------

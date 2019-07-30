@@ -6,7 +6,7 @@
 
 {% block bread %}
     <div class="ui segment mini breadcrumb">
-    <span class="section">Forum</span>
+    <span class="section"><a href="/Forum/">Forum</a></span>
     <i class="right chevron icon divider"></i>
     <span class="section">Ver</span>
     </div>
@@ -32,9 +32,21 @@
         <div class="row">
             <a href="/Forum/cadastrar_categoria/{{ forum.id_forum }}"><button>Cadastrar categoria</button></a>
             <h2 class="color-h-green">Categorias</h2>
+            <ul>
             {% for categoria in categorias %}
+            <li>
             <h4>{{categoria.nome}}</h4>
+                    <ul>
+                    {% for topico in categoria.topicos %}
+                    <li><a href="/Forum/ver_topico/{{topico.id_topico}}">{{topico.nome}}</a></li>
+                    {% else %}
+                    <li><h5>Não há tópicos nesta categoria</h5></li>
+                    {% endfor %}
+                    </ul>
+            <a href="/Forum/cadastrar_topico/{{forum.id_forum}}/{{categoria.id_categoria}}"><button>Cadastrar tópico</button></a>
+            </li>
             {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}

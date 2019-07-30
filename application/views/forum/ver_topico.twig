@@ -1,0 +1,42 @@
+{% extends "base.twig" %}
+
+{% block title %}Ver tópico{% endblock %}
+
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+    <span class="section"><a href="/Forum/">Forum</a></span>
+    <i class="right chevron icon divider"></i>
+    <span class="section">Ver tópico</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+
+{% block master_class %}ui grid{% endblock %}
+
+{% block left_class %}sixteen wide mobile twelve wide tablet ten wide computer centered column{% endblock %}
+
+{% block mid_class %}sixteen wide mobile twelve wide tablet eight wide computer centered column{% endblock %}
+
+{% block right_class %}hidden{% endblock %}
+
+{% block content %}
+    <div class="ui segment">
+        <div class="row">
+            <h1 class="color-h-green">{{ topico.nome }}</h1>
+        </div>
+        <br>
+        <div class="row">
+            <h2 class="color-h-green">Publicações</h2>
+            <a href="/Forum/cadastrar_pub/{{topico.id_topico}}"><button>Publicar neste tópico</button></a>
+            <br><br>
+            {% for publicacao in publicacoes %}
+            <a href="/Forum/ver_publicacao/{{publicacao.id_publicacao}}"><h3>{{ publicacao.titulo }}</h3></a>
+            {% else %}
+            <h3>Não há publicações neste tópico ainda</h3>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
