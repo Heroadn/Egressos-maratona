@@ -8,13 +8,16 @@ class Model_usuario extends CI_Model{
             $foto = base_url().'static/images/padrao.png';
         }
 
-        $this->db->where('id_turma', $usuario['id_turma']);
-        $this->db->select('turma');
-        $turma = $this->db->get("turma")->row_array();
-        $grupos = $this->insereGrupo($turma['turma'], $usuario['ano_egresso'], $usuario['email']);
+        //Se for uma empresa
+        if($usuario['id_tipo_usuario'] != '1'){
+            $this->db->where('id_turma', $usuario['id_turma']);
+            $this->db->select('turma');
+            $turma = $this->db->get("turma")->row_array();
+            $grupos = $this->insereGrupo($turma['turma'], $usuario['ano_egresso'], $usuario['email']);
 
-        $usuario['id_grupo'] = $grupos['id_grupo'];
-        $usuario['nome_completo'] = ''.$usuario['nome'].' '.$usuario['ultimo_nome'].'';
+            $usuario['id_grupo'] = $grupos['id_grupo'];
+            $usuario['nome_completo'] = ''.$usuario['nome'].' '.$usuario['ultimo_nome'].'';
+        }
         $this->db->insert("usuario", $usuario);
 
         $this->db->where('email', $usuario['email']);
@@ -31,7 +34,6 @@ class Model_usuario extends CI_Model{
         $this->db->insert("midia", $foto2);
         $idMidia = $this->Model_postagem->CadastroMidia($foto2);
         $this->cadastroMidiaUsuario($banco_user['id_usuario'], $idMidia);
-
     }
 
     public function cadastroMidiaUsuario($idUsuario, $idMidia){

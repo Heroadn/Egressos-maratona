@@ -22,7 +22,6 @@ class PortalEgresso extends CI_Controller{
     }
 
     public function index(){
-
         $providers = array();
         foreach ($this->hybridauth->HA->getProviders() as $provider_id => $params)
         {
@@ -41,13 +40,9 @@ class PortalEgresso extends CI_Controller{
         $form['oauth_existente'] = $this->session->flashdata('oauth_existente');
         $form['classe_oauth_existente'] = $this->session->flashdata('classe_oauth_existente');
         $form['msg_login'] = $this->session->flashdata('msg_login');
-
         $form['msg_login'] = $this->session->flashdata('msg_login');
-
         $form['msg_login'] = $this->session->flashdata('msg_login');
-
         $form['msg_login'] = $this->session->flashdata('msg_login');
-
         $form['msg_login'] = $this->session->flashdata('msg_login');
 
         $form["usuario_logado"] = $this->session->userdata("usuario_logado");
@@ -58,8 +53,25 @@ class PortalEgresso extends CI_Controller{
 
     }
 
-    public function cadastro(){
+    public function cadastro($tipo = null){
+        switch ($tipo) {
+            case strtolower('Usuario'):
+                $this->cadastrarUsuario();
+                break;
+            case strtolower('Empresa'):
+                $this->cadastrarEmpresa();
+                break;
+            default:      
+                $this->selecao();
+                break;
+        }
+    }
 
+    public function selecao(){;
+        $this->twig->display('cadastro/selecao');
+    }
+
+    public function cadastrarUsuario(){
         $this->load->model("Model_cadastro");
         $this->load->model("Model_usuario");
 
@@ -81,7 +93,7 @@ class PortalEgresso extends CI_Controller{
             $dados_cursos = '';
             $dados_turmas = '';
 
-            $form["form_open"] = form_open("PortalEgresso/cadastro", 'class="ui form segment"');
+            $form["form_open"] = form_open("PortalEgresso/cadastro/usuario", 'class="ui form segment"');
             $form["label_nome"] = form_label("Nome","nome");
             $form["input_nome"] = form_input(array("name" => "nome", "id" => "nome", "class" => "", "maxlength" => "255", "value" => set_value('nome')));
             $form["label_ultimo_nome"] = form_label("Sobrenome","ultimo_nome");
@@ -126,14 +138,13 @@ class PortalEgresso extends CI_Controller{
             $this->twig->display('usuario/cadastro', $form);
 
         }else {
-
             $token = hash("ripemd160", $this->input->post("email"));
             $this->load->model("Model_usuario");
             $senha = $this->input->post("senha");
             $senha = $this->Model_usuario->bcrypt($senha);
             $resposta = $this->Model_usuario->bcrypt($this->input->post("resposta"));
             $usuario = array(
-                "id_tipo_usuario" => 1,
+                "id_tipo_usuario" => 0,
                 "nome" => $this->input->post("nome"),
                 "ultimo_nome" => $this->input->post("ultimo_nome"),
                 "email" => $this->input->post("email"),
@@ -157,8 +168,95 @@ class PortalEgresso extends CI_Controller{
             $form["usuario_logado"] = $this->session->userdata("usuario_logado");
 
             $this->twig->display('usuario/novo', $form);
-
         }
+    }
+
+    public function cadastrarEmpresa(){
+        $this->load->model("Model_cadastro");
+        $this->load->model("Model_usuario");
+
+        $this->form_validation->set_rules('nome', 'Nome Fantasia', array('required', 'min_length[2]', 'max_length[50]', 'regex_match[/^[ A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ]+$/]'));
+        $this->form_validation->set_rules('email', 'Email do Usuário', 'required|valid_email|is_unique[usuario.email]');
+        $this->form_validation->set_rules('senha', 'Senha do Usuário', array('required', 'min_length[7]', array('numeroLetra', array($this->Model_usuario, 'numeroLetra')))); #array('required' => 'Você deve preencher a %s.') Configurar msg de erro
+        $this->form_validation->set_rules('Rsenha', 'Confirmação de Senha', 'required|matches[senha]');
+        $this->form_validation->set_rules('pergunta', 'Pergunta de Segurança', 'min_length[5]|max_length[80]|required|regex_match[/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9,.!@#$% ]+$/]');
+        $this->form_validation->set_rules('resposta', 'Resposta', 'min_length[5]|max_length[800]|required|regex_match[/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9,.!@#$% ]+$/]');
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                $dados_campus = $this->Model_cadastro->selectCampus();
+                $dados_cursos = '';
+                $dados_turmas = '';
+
+                $form["form_open"] = form_open("PortalEgresso/cadastro/empresa", 'class="ui form segment"');
+                $form["label_nome"] = form_label("Nome Fantasia","nome");
+                $form["input_nome"] = form_input(array("name" => "nome", "id" => "nome", "class" => "", "maxlength" => "255", "value" => set_value('nome')));
+                $form["label_email"] = form_label("Email","email");
+                $form["input_email"] = form_input(array("name" => "email", "id" => "email", "class" => "", "maxlength" => "255", "value" => set_value('email')));
+                $form["label_senha"] = form_label("Senha","Senha");
+                $form["label_Rsenha"] = form_label("Repita a Senha","Rsenha");
+                $form["input_senha"] = form_password(array("name" => "senha", "id" => "senha", "class" => "", "maxlength" => "255"));
+                $form["input_Rsenha"] = form_password(array("name" => "Rsenha", "id" => "Rsenha", "class" => "", "maxlength" => "255"));
+                $form["label_pergunta"] = form_label("Pergunta de Segurança", "pergunta");
+                $form["input_pergunta"] = form_input(array("name" => "pergunta", "id" => "pergunta", "class" => "", "maxlength" => "255", "value" => set_value('pergunta')));
+                $form["label_resposta"] = form_label("Resposta", "resposta");
+                $form["input_resposta"] = form_textarea(array("name" => "resposta", "id" => "resposta", "class" => "", "maxlength" => "255", "value" => set_value('resposta')));
+                $form["label_termos"] = form_label("Ao clicar você aceita os Termos de uso e a Política de privacidade.","radioTermos");
+                $form["checkbox_termos"] = form_checkbox(array("name" => "radioTermos", "class" => "checkbox"));
+
+                //cnpj
+                $form["label_cnpj"] = form_label("CNPJ", "cnpj");
+                $form["input_cnpj"] = form_input(array("name" => "CNPJ", "id" => "cnpj", "class" => "", "maxlength" => "20"));
+
+                //porte
+                $form["label_porte"] = form_label("Qual porte de sua empresa?","checkbox_porte");
+                $form["button_submit"] = form_button(array("type" => "submit", "content" => "Enviar", "class" => "ui green button color-button right floated enviar", "disabled" => 'disabled'));
+                $form["form_close"] = form_close();
+
+                $form["erros_validacao"] = array(
+                    "erros_nome" => form_error('nome'),
+                    "erros_email" => form_error('email'),
+                    "erros_senha" => form_error('senha'),
+                    "erros_Rsenha" =>form_error('Rsenha'),
+                    "erros_pergunta" =>form_error('pergunta'),
+                    "erros_resposta" => form_error('resposta')
+                );
+
+                $this->twig->display('empresa/cadastro', $form);
+
+            }else {
+                $token = hash("ripemd160", $this->input->post("email"));
+                $this->load->model("Model_usuario");
+                $senha = $this->input->post("senha");
+                $senha = $this->Model_usuario->bcrypt($senha);
+                $resposta = $this->Model_usuario->bcrypt($this->input->post("resposta"));
+                $usuario = array(
+                    "id_tipo_usuario" => 1,
+                    "nome" => $this->input->post("nome"),
+                    "email" => $this->input->post("email"),
+                    "senha" => $senha,
+                    "porte" => $this->input->post("porte"),
+                    "CNPJ" => $this->input->post("CNPJ"),
+                    "municipio" => $this->input->post("CNPJ"),
+                    "pergunta" => $this->input->post("pergunta"),
+                    "resposta" => $resposta,
+                    "id_status" => 2,
+                    "descricao" => "...",
+                    "data_criacao" => date("Y-m-d H:i:s"),
+                    "token" => $token
+                );
+                $this->Model_usuario->salva($usuario);
+
+                $assunto = "Email de Verificação da Conta de: " . $usuario["nome"] . " - Portal Egressos";
+                $mensagem = "Para ativar sua conta, clique no link a seguir:{unwrap}".base_url()."/Usuario/validarEmail?token=" . $token . "{/unwrap}";
+                $this->Model_usuario->enviarEmail("hackthanos@acid-software.net", "Portal Egressos", $usuario['email'], $usuario['nome'], $assunto, $mensagem);
+
+                $form["button_login"] = anchor("PortalEgresso", "<i class=\"sign out alternate ui icon\"></i>Login</a>", 'class="color-a-brown"');
+                $form["usuario_logado"] = $this->session->userdata("usuario_logado");
+
+                $this->twig->display('usuario/novo', $form);
+
+            }
     }
 
     public function getCurso(){
@@ -221,8 +319,6 @@ class PortalEgresso extends CI_Controller{
                 "erros_resposta" => form_error('resposta'),
             );
 
-//            $this->session->set_flashdata('msg_erro', $form);
-//            redirect('PortalEgresso/completarCadastro');
             $this->twig->display('usuario/completaCadastro', $form);
 
         }else {
@@ -237,7 +333,7 @@ class PortalEgresso extends CI_Controller{
             }
             $resposta = $this->Model_usuario->bcrypt($this->input->post("resposta"));
             $usuario = array(
-                "id_tipo_usuario" => 1,
+                "id_tipo_usuario" => 0,
                 "nome" => $usuario_oauth['firstName'],
                 "ultimo_nome" => $usuario_oauth['lastName'],
                 "email" => $usuario_oauth['email'],

@@ -18,7 +18,7 @@
 {% block right_class %}hidden{% endblock %}
 
 {% block content %}
-    <h1 class="color-h-green border-line"> Cadastro Usuario</h1>
+    <h1 class="color-h-green border-line"> Cadastro Empresa</h1>
     <div class="row">
     {{ form_open|raw }}
             <div class="field">
@@ -30,39 +30,15 @@
                 {% endif %}
 
             </div>
-            <div class="field">
-
-                {{ label_ultimo_nome|raw }}
-                {{ input_ultimo_nome|raw }}
-
-                {% if (erros_validacao['erros_ultimo_nome']) %}
-
-                    {{ erros_validacao['erros_ultimo_nome']|raw }}
-
-                {% endif %}
-
-            </div>
             <div class="raised field">
                 {{ label_email|raw }}
                 {{ input_email|raw }}
 
                 {% if (erros_validacao['erros_email']) %}
-
                     {{ erros_validacao['erros_email']|raw }}
-
                 {% endif %}
 
             </div>
-        <div class="ui info olive message">
-            <i class="close icon"></i>
-            <div class="header">
-                Regras para a definição de Senha:
-            </div>
-            <ul class="list">
-                <li>A senha tem que ser maior que 7 caracteres;</li>
-                <li>A senha deverá ter pelo menos um numero e uma letra.</li>
-            </ul>
-        </div>
         <div class="two fields">
             <div class="field">
 
@@ -90,64 +66,78 @@
 
             </div>
         </div>
-            <div class="field">
 
-                {{ label_campus|raw }}
-                {{ dropdown_campus|raw }}
+        <br>
+        <h4 class="ui horizontal divider">Dados da Empresa</h4>
 
-                {% if (erros_validacao['erros_campus']) %}
-                    {{ erros_validacao['erros_campus']|raw }}
-                {% endif %}
+        <!-- CNPJ -->
+        {{ label_cnpj|raw }}
+        {{ input_cnpj|raw }}
 
-            </div>
-            <div class="field">
+        <br>
+        <br>
 
-                {{ label_curso|raw }}
-                {{ dropdown_curso|raw }}
-
-                {% if (erros_validacao['erros_curso']) %}
-                    {{ erros_validacao['erros_curso']|raw }}
-                {% endif %}
-
-            </div>
-
-            <div class="field">
-
-                {{ label_turmas|raw }}
-                {{ dropdown_turmas|raw }}
-
-                {% if (erros_validacao['erros_turmas']) %}
-
-                    {{ erros_validacao['erros_turmas']|raw }}
-
-                {% endif %}
-
-            </div>
-            <div class="field">
-
-                {{ label_ano|raw }}
-                {{ input_ano|raw }}
-
-                {% if (erros_validacao['erros_ano']) %}
-
-                    {{ erros_validacao['erros_ano']|raw }}
-
-                {% endif %}
-
-            </div>
-        <div class="ui info olive message">
-            <i class="close icon"></i>
-            <div class="header">
-                Defina uma pergunta de segurança:
-            </div>
-            <ul class="list">
-                <li>Ela sera usada para recuperar sua senha caso precise;</li>
-                <li>Escolha uma pergunta que você não se esqueça;</li>
-                <li>Não são permitidos caracteres especiais.</li>
-            </ul>
-        </div>
         <div class="field">
+            {{ label_porte|raw }}
 
+            <br>
+            <!-- Porte da Empresa -->
+            <div class="ui link cards">
+                <div class="card" id="porte_1">
+                    <div class="content">
+                        <div class="header">
+                            Funcionarios
+                        </div>
+                        <div class="description center aligned">
+                            9
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+
+                <div class="card" id="porte_2">
+                    <div class="content">
+                        <div class="header">
+                            Funcionarios
+                        </div>
+                        <div class="description center aligned">
+                            10 a 49
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+
+                <div class="card" id="porte_3">
+                    <div class="content">
+                        <div class="header">
+                            Funcionarios
+                        </div>
+                        <div class="description center aligned">
+                            50 a 99
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+
+                <div class="card" id="porte_4">
+                    <div class="content">
+                        <div class="header">
+                            Funcionarios
+                        </div>
+                        <div class="description center aligned">
+                            100
+                        </div>
+                    </div>
+                </div>
+                <!-- -->
+            </div>
+        </div>
+        <br>
+
+        <!-- Valor do porte -->
+        <input type="text" name="porte" id="porte" class="hidden" value="0">
+
+        <div class="field">
 
             {{ label_pergunta|raw }}
             {{ input_pergunta|raw }}

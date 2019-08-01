@@ -12,7 +12,7 @@ class Model_timeline extends CI_Model
         $posts["input_upload"] = form_upload('file[]', null, array("multiple" => '', "id" => "adicionar-foto", "hidden" => "true", "accept" => "image/*", "onchange" => "previewFiles()"));
         $posts["label_foto"] = form_label("<i class='ui paperclip icon'></i>Add. Foto", "adicionar-foto", array('class' => 'ui green left floated labeled icon button', 'id' => 'labelFoto', "onchange" => "previewFiles()"));
         $posts["button_confirm"] = form_button(array("content" => "<i class=\"icon edit\"></i> Postar", "class" => "confirm ui primary submit right floated labeled icon button"));
-        $posts["button_submit"] = form_button(array("type" => "submit", "content" => "<i class=\"icon edit\"></i> Postar", "class" => "ui  blue submit labeled icon button", "onclick" => "$('#formPost').submit()"));
+        $posts["button_submit"]  = form_button(array("type" => "submit", "content" => "<i class=\"icon edit\"></i> Postar", "class" => "ui  blue submit labeled icon button", "onclick" => "$('#formPost').submit()"));
         $posts["form_close"] = form_close();
 
         return $posts;

@@ -1,0 +1,26 @@
+{% extends "base.twig" %}
+{% block title %}Cadastro{% endblock %}
+{% block body_class %}{% endblock %}
+{% block header %}{% include "base/header.twig" %}{% endblock %}
+
+{% block bread %}
+    <div class="ui segment mini breadcrumb">
+    <span class="section">Login</span>
+    <i class="right chevron icon divider"></i>
+    <span class="section">Cadastro</span>
+    </div>
+{% endblock %}
+
+{% block footer %}{% include "base/footer.twig" %}{% endblock %}
+{% block master_class %}ui grid cad{% endblock %}
+{% block left_class %}hidden{% endblock %}
+{% block mid_class %}sixteen wide mobile twelve wide tablet ten wide computer centered column{% endblock %}
+{% block right_class %}hidden{% endblock %}
+
+{% block content %}
+    <h1 class="color-h-green"> Selecione o tipo da conta</h1>
+    <div class="row">
+        <button class="ui segment mini breadcrumb" onclick="window.location.href='/PortalEgresso/cadastro/usuario'">Usuario<i class="icon edit\"></i></button>
+        <button class="ui segment mini breadcrumb" onclick="window.location.href='/PortalEgresso/cadastro/empresa'">Empresa<i class="icon edit\"></i></button>
+    </div>
+{% endblock %}

@@ -25,7 +25,7 @@ class Timeline extends CI_Controller
     }
 
     public function postagem(){
-        $this->form_validation->set_rules('titulo', 'Titulo', array('required', 'min_length[5]', 'max_length[50]', 'regex_match[/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9,.!@#$% ]+$/]'));
+        $this->form_validation->set_rules('titulo', 'Titulo', array('required', 'min_length[5]', 'max_length[80]', 'regex_match[/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9,.!@#$%]+$/]'));
         if ($this->form_validation->run() == FALSE) {
             $usuario = $this->session->userdata("usuario_logado");
             $this->load->model("Model_usuario");
@@ -92,9 +92,7 @@ class Timeline extends CI_Controller
     }
 
     public function visu_post(){
-
         $idPost = $this->uri->segment(3);
-
         $this->load->model("Model_postagem");
         $post = $this->Model_postagem->postagemIntegra($idPost);
         $dado_postagem['id_post'] = $idPost;
@@ -113,10 +111,11 @@ class Timeline extends CI_Controller
         $dados_usuario += $this->Model_timeline->gera_form_comentario('Timeline/processaComentario');
         $dados_usuario["notificacoes"] = $this->Model_usuario->buscarNotificacoes();
         $dados_usuario["nr_notificacoes"] = strval(count($dados_usuario['notificacoes']));
-//            Temporario
+        //Temporario
         $post['comentarios'] = $this->Model_timeline->buscarComentario($idPost);
         $post+= $dado_postagem;
         $post+= $dados_usuario;
+        
         $this->twig->display('usuario/visualizarPost', $post);  
     }
 

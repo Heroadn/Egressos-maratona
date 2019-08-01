@@ -100,7 +100,7 @@ class Grupo extends CI_Controller{
     public function contadorCurtidas(){
         $posts = $this->input->post('idsPost');
         $this->load->model("Model_postagem");
-//        $arrayPosts = $this->Model_postagem->retornaArray($posts);
+        //$arrayPosts = $this->Model_postagem->retornaArray($posts);
         $arrayCurtidas= $this->Model_postagem->countCurtidas($posts);
         $jsonCurtidas = json_encode($arrayCurtidas);
         header('Content-type:application/json;charset=utf-8');

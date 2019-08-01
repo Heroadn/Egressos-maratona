@@ -59,6 +59,10 @@ $(document).ready(function () {
     $('.ui.basic.modal').modal('attach events', '.confirm.button', 'show');
     ////END MODAL DE CONFIRMAÇÃO
 
+    ////MODAL DE POSTAGEM
+    $('.ui.postagem.modal').modal('attach events', '.postagem.button', 'show');
+    ////END MODAL DE POSTAGEM
+
 
     ////INFINITE-SCROLL
 
@@ -184,7 +188,7 @@ $(document).ready(function () {
     $("#idCampus").change(function(){
         let id_campus = $("#idCampus").val();
 
-        $.post('getCurso',{
+        $.post('/PortalEgresso/getCurso',{
             id_campus : id_campus
         }, function(data){
             $('#idCurso').html(data);
@@ -193,7 +197,7 @@ $(document).ready(function () {
 
     $("#idCurso").change(function(){
         let id_curso = $("#idCurso").val();
-        $.post('getTurma',{
+        $.post('/PortalEgresso/getTurma',{
             id_curso : id_curso
         }, function(data){
             $('#idTurma').html(data);
@@ -220,6 +224,26 @@ $(document).ready(function () {
             });
             clicado = 0;
         }
+    });
+
+    $('#porte_1').click(function(e) {  
+        $('#porte').val('1');
+        $('#porte').css({'background-color': 'green'});
+    });
+
+    $('#porte_2').click(function(e) {  
+        $('#porte').val('2');
+        $('#porte').css({'background-color': 'green'});
+    });
+
+    $('#porte_3').click(function(e) {  
+        $('#porte').val('3');
+        $('#porte').css({'background-color': 'green'});
+    });
+
+    $('#porte_4').click(function(e) {  
+        $('#porte').val('4');
+        $('#porte').css({'background-color': 'green'});
     });
 
     $('.item').tab();

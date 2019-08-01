@@ -1,12 +1,11 @@
 body{
-    background-image: url("images/imagem.png");
+    background-color: #DCDCDC !important;
 }
 
 footer{
     min-height: 20%;
     background-color: #55AA64 !important;
     color: #ffffff !important;
-
 }
 
 nav{
@@ -92,10 +91,6 @@ article{
 
 .card{
     margin-top: 5px !important;
-}
-
-body{
-    background-color: #eaeaea !important;
 }
 
 /*.scroll-admin{*/
@@ -253,6 +248,14 @@ input:checked + .slider:before {
     margin-left: -60% !important;
     margin-top: -40% !important;
     z-index: 1;
+}
+
+.border-line{
+    -webkit-text-stroke-color: #ffffff;
+    -webkit-text-stroke-width: 0.1px; 
+    text-shadow: 0 0 2px #ffffff; /* horizontal-offset vertical-offset 'blur' colour */
+    -moz-text-shadow: 0 0 2px #ffffff;
+    -webkit-text-shadow: 0 0 2px #ffffff;
 }
 
 @media only screen and (max-width: 768px){

@@ -1,6 +1,6 @@
 {% extends "base.twig" %}
 
-{% block title %}Timeline - {{ nome }}{% endblock %}
+{% block title %} Chat - {{ nome }}{% endblock %}
 
 {% block body_class %}{% endblock %}
 
@@ -71,7 +71,7 @@
  
         /* Gerenciando websocket*/
         window.WebSocket = window.WebSocket || window.MozWebSocket;
-        var connection = new WebSocket('wss://socket.acid-software.net:443');
+        var connection = new WebSocket('ws://localhost:8081'+'"'+{{ SOCKET|raw }}+'"');
 
         connection.onopen = function () {
             //LOADING

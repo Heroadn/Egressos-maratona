@@ -51,25 +51,28 @@ create table grupo(
 create table usuario(
 	id_usuario INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50) NOT NULL,
-    ultimo_nome VARCHAR(50) NOT NULL,
+    ultimo_nome   VARCHAR(50) ,
+    nome_completo VARCHAR(100),
+    CNPJ  VARCHAR(100),
     email VARCHAR(80) NOT NULL,
     senha char(64) NOT NULL,
+    trabalho_atual VARCHAR(80),
+    formacao_academica VARCHAR(80),
+    porte INTEGER,
+    municipio VARCHAR(80), 
+    pergunta  VARCHAR(200)  NOT NULL,
+	resposta  VARCHAR(200)  NOT NULL,
+    descricao VARCHAR(200) NOT NULL,
     oauth VARCHAR(80),
     facebook VARCHAR(80),
     linkedin VARCHAR(80),
-    trabalho_atual VARCHAR(80),
-    formacao_academica VARCHAR(80),
-    pergunta VARCHAR(200) NOT NULL,
-	resposta VARCHAR(200) NOT NULL,
-    descricao VARCHAR(200) NOT NULL,
-    ano_egresso INTEGER NOT NULL,
+    ano_egresso INTEGER,
     data_criacao DATE NOT NULL,
-    nome_completo VARCHAR(100) NOT NULL,
     token VARCHAR(100) NOT NULL,
     id_tipo_usuario INTEGER NOT NULL,
     id_status INTEGER NOT NULL,
-    id_turma INTEGER NOT NULL,
-    id_grupo INTEGER NOT NULL,
+    id_turma  INTEGER NOT NULL,
+    id_grupo  INTEGER NOT NULL,
     FOREIGN KEY (id_turma) REFERENCES turma(id_turma),
     FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
 );
@@ -136,7 +139,7 @@ create table post(
 -- -----------------------------------------------------
 
 create table curtidas(
-    id_curtidas INTEGER PRIMARY KEY AUTO_INCREMENT,
+    id_curtida INTEGER PRIMARY KEY AUTO_INCREMENT,
     id_post INTEGER,
     id_user INTEGER,
     id_status INTEGER,
@@ -196,76 +199,30 @@ create table midia_post(
     FOREIGN KEY (post_id_post)  REFERENCES post(id_post)
 );
 
-###################################
-#### INICIO DAS TABELAS PARA O FORUM ########
-###################################
-
-CREATE TABLE forum(
-	id_forum INTEGER PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(200),
-    descricao TEXT,
-    id_criador INTEGER,
-    FOREIGN KEY(id_criador) REFERENCES usuario(id_usuario) ON DELETE CASCADE
-);
-
-#tabela designada para administradores do f�rum, que podem ser designados pelo criador
-CREATE TABLE adm_forum(
-	id_adm_forum INTEGER PRIMARY KEY AUTO_INCREMENT,
-    id_forum INTEGER,
-    id_usuario INTEGER,
-	FOREIGN KEY(id_forum) REFERENCES forum(id_forum) ON DELETE CASCADE,
-    FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
-);
-
-CREATE TABLE categoria(
-	id_categoria INTEGER PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(200),
-    id_forum INTEGER,
-    FOREIGN KEY(id_forum) REFERENCES forum(id_forum) ON DELETE CASCADE
-);
-
-CREATE TABLE topico(
-	id_topico INTEGER PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(200),
-    id_categoria INTEGER,
-    FOREIGN KEY(id_categoria) REFERENCES categoria(id_categoria) ON DELETE CASCADE
-);
-
-CREATE TABLE publicacao(
-	id_publicacao INTEGER PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR(200),
-    conteudo TEXT,
-    data_publicacao DATETIME, 
-    id_topico INTEGER,
-    id_usuario INTEGER,
-    FOREIGN KEY(id_topico) REFERENCES topico(id_topico) ON DELETE CASCADE,
-    FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
-);
-
-CREATE TABLE comentario(
-	id_comentario INTEGER PRIMARY KEY AUTO_INCREMENT,
-    conteudo TEXT,
-    id_publicacao INTEGER,
-    id_usuario INTEGER,
-    FOREIGN KEY(id_publicacao) REFERENCES publicacao(id_publicacao) ON DELETE CASCADE,
-    FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
-);
-
-################################
-##### FIM DAS TABELAS PARA O FORUM ######
-################################
-
 -- -----------------------------------------------------
 -- mensagen
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS mensagem (
-  id_mensagem INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  id_mensagem INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   conteudo VARCHAR(280) NOT NULL,
   data DATETIME NOT NULL,
   id_usuario INT NOT NULL,
   id_grupo   INT NOT NULL,
 	FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
     FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo)
+)ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- comentario
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS comentario(
+  id_comentario INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  comentario VARCHAR(280) NOT NULL,
+  data_comentario DATETIME NOT NULL,
+  id_usuario INT NOT NULL,
+  id_post   INT NOT NULL,
+	FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_post) REFERENCES post(id_post)
 )ENGINE = InnoDB;
 
 #############################
@@ -275,10 +232,9 @@ CREATE TABLE IF NOT EXISTS mensagem (
 -- -----------------------------------------------------
 -- CAMPUS, CURSO, TURMA
 -- -----------------------------------------------------
-INSERT INTO campus(nome) VALUES ('Campus1'), ('ECampus2'), ('Campus3');
-INSERT INTO curso(id_campus, curso) VALUES (1, 'Curso1'), (2, 'Curso2'),
-(3, 'Curso3');
-INSERT INTO turma(id_curso, turma) VALUES (1, 'Turma1'), (2, 'Turma2'), (3, 'Turma3');
+INSERT INTO campus(nome) VALUES ('Campus Chapeco'), ('Campus Garopaba'), ('Campus Araranguara');
+INSERT INTO curso(id_campus, curso) VALUES (1, 'Desenvolvimento de Sistemas'), (2, 'Biotecnologia'),(3, 'Administração');
+INSERT INTO turma(id_curso, turma) VALUES (1, 'Tecnico'), (2, 'Tecnologo'), (3, 'Profissionalizante');
 
 -- -----------------------------------------------------
 -- TIPO_NOTIFICACAO
@@ -291,3 +247,9 @@ INSERT INTO tipo_notificacao() VALUES ();
 INSERT INTO tipo_notificacao() VALUES ();
 INSERT INTO tipo_notificacao() VALUES ();
 INSERT INTO tipo_notificacao() VALUES ();
+
+select * from usuario;
+select * from zadmin_hackathon.mensagem;
+select * from post;
+select * from midia;
+select * from zadmin_hackathon.mensagem;

@@ -14,7 +14,7 @@ class Chat extends CI_Controller
     }
 
     public function index(){
-        redirect('Chat/conversar');
+        redirect('chat/conversar');
     }
 
     public function conversar(){
@@ -35,7 +35,7 @@ class Chat extends CI_Controller
                 "erros_conteudo" => form_error('conteudo')
             );
 
-            /*TEMPORARIO*/
+            $mensagens["SOCKET"] = SOCKET_HOST;
             $this->twig->display('chat/conversar', $mensagens);
         }else{
             $usuario = $this->session->userdata("usuario_logado");
@@ -55,24 +55,35 @@ class Chat extends CI_Controller
             $this->load->model("Model_conversar");
             $card = $this->Model_conversar->build($idMensagem);
 
-            
-            $ch = curl_init('https://socket.acid-software.net/');
+            //Inicializa a conexao com o servideor node 
+            $ch = curl_init('http://'.SOCKET_HOST.'/');
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+
+            //Payload a ser mandado a usuario
             $jsonData = json_encode([
                 'card' => $card
             ]);
+
+            //Manda o cartão formatado para a interface dos usuarios
             $query = http_build_query(['data' => $jsonData]);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $query);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            //Resultado do envio
             $response = curl_exec($ch);
+
+            //Fechando a conexão
             curl_close($ch);
         }
     }
 
+    /*
+        busca mensagens do banco de dados
+    */
     public function fetch(){
         $usuario = $this->session->userdata("usuario_logado");
         $this->load->model('Model_conversar');
-        $mensagem = $this->Model_conversar->fetch($usuario['id_grupo'],10,0 );
+        $mensagem = $this->Model_conversar->fetch($usuario['id_grupo']);
         echo $mensagem;
     }
 }
