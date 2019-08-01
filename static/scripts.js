@@ -54,7 +54,6 @@ $(document).ready(function () {
     }
     ////END BUSCAR USUARIO
 
-
     ////MODAL DE CONFIRMAÇÃO
     $('.ui.basic.modal').modal('attach events', '.confirm.button', 'show');
     ////END MODAL DE CONFIRMAÇÃO

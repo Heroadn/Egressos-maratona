@@ -62,12 +62,14 @@ class Timeline extends CI_Controller
 
             $posts+= $dados_usuario;
             $posts+= $data;
+
+            
             $this->twig->display('usuario/timeline', $posts);
 
         }else{
             $usuario = $this->session->userdata("usuario_logado");
             $post = array(
-                "titulo" => $this->input->post("titulo"),
+                "titulo" =>    $this->input->post("titulo"),
                 "descricao" => $this->input->post("conteudo"),
                 "id_status" => 1,
                 'data' => date("Y-m-d H:i:s"),

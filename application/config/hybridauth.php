@@ -33,7 +33,7 @@ $config['hybridauth'] = array(
         ),
         "LinkedIn" => array(
             "enabled" => TRUE,
-            "keys" => array("id" => "#SEU_ID", "secret" => "#SECRET_KEY"),
+            "keys" => array("id" => "78118at02cgdoa", "secret" => "V0AkXA5kr02BP04I"),
         ),
     ),
     // If you want to enable logging, set 'debug_mode' to true.
