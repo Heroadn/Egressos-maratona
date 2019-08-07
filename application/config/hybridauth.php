@@ -15,15 +15,15 @@ $config['hybridauth'] = array(
         ),
         "Yahoo" => array(
             "enabled" => FALSE,
-            "keys" => array("id" => "", "secret" => ""),
+            "keys" => array("id" => "#SEU_ID", "secret" => "#SECRET_KEY"),
         ),
         "Google" => array(
             "enabled" => FALSE,
-            "keys" => array("id" => "", "secret" => ""),
+            "keys" => array("id" => "#SEU_ID", "secret" => "#SECRET_KEY"),
         ),
         "Facebook" => array(
             "enabled" => TRUE,
-            "keys" => array("id" => "944857609192270", "secret" => "39a17449113e00ce1725939e50597302"), 
+            "keys" => array("id" => "#SEU_ID", "secret" => "#SECRET_KEY"), 
             "trustForwarded" => FALSE,
         ),
         "Twitter" => array(
